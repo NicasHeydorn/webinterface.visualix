@@ -227,6 +227,8 @@ h1 {
             padding-right: 4px;
 
             li {
+                display: inline-block;
+
                 &.image-container {
                     position: relative;
                     overflow: hidden;
@@ -289,10 +291,131 @@ h1 {
                     }
                 }
 
-                display: inline-block;
+                &:hover {
+                    cursor: pointer;
+                }
             }
         }
     }
+}
+
+@moviedialogimageheight: 150px;
+@moviedialogimageoffset: 40px;
+
+.modal-dialog {
+    margin: 0;
+
+    .modal-content {
+        border: none;
+        border-radius: 0;
+        -webkit-box-shadow: none;
+        -moz-box-shadow: none;
+        box-shadow: none;
+
+        .modal-body {
+            -webkit-background-clip: padding-box;
+            -moz-background-clip: padding-box;
+            background-clip: padding-box;
+            background-color: white;
+            outline: none;
+            padding: 0;
+
+            h1 {
+                position: relative;
+                font-size: 1.2em;
+                line-height: 1.428571429;
+                margin: 0;
+                padding: 36px 6px 6px;
+                text-align: center;
+
+                .rating {
+                    position: absolute;
+                    left: 20px;
+                    top: 10px;
+                    font-size: 0.8em;
+                }
+
+                .watched-icon {
+                    position: absolute;
+                    color: #ccc;
+                    font-size: 0.8em;
+                    right: 20px;
+                    top: 10px;
+
+                    .glyphicon-eye-open {
+                        color: @accentcolor;
+                    }
+                }
+            }
+
+            .image {
+                position: relative;
+                height: @moviedialogimageheight;
+                width: 100%;
+
+                img {
+                    position: absolute;
+                    width: 100%;
+                }
+            }
+
+            .content {
+                background-color: #FFF;
+                padding-top: 20px;
+
+                .plot {
+                    font-size: 1.1em;
+                    padding: 0 20px 10px;
+                    text-align: center;
+                }
+
+                .buttons {
+                    background-color: #EFEFEF;
+                    text-align: center;
+
+                    .btn {
+                        background-color: #E6E6E6;
+                        color: #000;
+                    }
+                }
+
+                .info {
+                    margin-right: 0;
+                    padding: 20px;
+
+                    h2 {
+                        font-size: 1.4em;
+                        margin: 0;
+                        padding-bottom: 6px;
+                        padding-top: 6px;
+                    }
+
+                    ul {
+                        list-style-type: none;
+                        padding-left: 0;
+
+                        li {
+                            padding-left: 0;
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+
+.modal-backdrop {
+    display: none !important;
+}
+
+.modal {
+    position: absolute;
+    overflow: visible;
+    top: 145px;
+}
+
+.modal-open {
+    overflow: auto;
 }
 
 @media (min-width: 768px) {
@@ -386,6 +509,37 @@ h1 {
             }
         }
     }
+
+    .modal-dialog {
+        margin: 20px;
+        width: auto;
+
+        .modal-content {
+            border-top: 5px solid @accentcolor;
+
+            .modal-body {
+                h1 {
+                    font-size: 1.8em;
+                    padding-top: 6px;
+                }
+            }
+        }
+    }
+
+    .modal-backdrop {
+        display: block !important;
+    }
+
+    .modal {
+        position: fixed;
+        overflow: auto;
+        overflow-y: auto;
+        top: 0;
+    }
+
+    .modal-open {
+        overflow: hidden;
+    }
 }
 
 @media (min-width: 992px) {
@@ -438,126 +592,36 @@ h1 {
         }
     }
 
-    .modalBlockout {
-        position: fixed;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        background: #000;
-        opacity: 0;
-        -moz-backface-visibility: hidden;
-        -webkit-backface-visibility: hidden;
-        backface-visibility: hidden;
-        -webkit-transition: opacity 0.1s linear;
-        -moz-transition: opacity 0.1s linear;
-        -o-transition: opacity 0.1s linear;
-        transition: opacity 0.1s linear;
-    }
-
-    .modalHost {
-        position: fixed;
-        top: 50%;
-        left: 50%;
-        opacity: 0;
-        -moz-backface-visibility: hidden;
-        -webkit-backface-visibility: hidden;
-        backface-visibility: hidden;
-        max-height: 100%;
-        -webkit-transition: opacity 0.1s linear;
-        -moz-transition: opacity 0.1s linear;
-        -o-transition: opacity 0.1s linear;
-        transition: opacity 0.1s linear;
-    }
-
-    .movie-info {
-        -webkit-background-clip: padding-box;
-        -moz-background-clip: padding-box;
-        background-clip: padding-box;
-        background-color: white;
-        -webkit-box-shadow: 0 4px 7px rgba(0, 0, 0, 0.3);
-        -moz-box-shadow: 0 4px 7px rgba(0, 0, 0, 0.3);
-        box-shadow: 0 4px 7px rgba(0, 0, 0, 0.3);
-        height: 100%;
+    .modal-dialog {
+        margin: 30px auto;
         width: @moviedialogwidth;
-        outline: none;
 
-        h1 {
-            position: relative;
-            border-top: 5px solid @accentcolor;
-            font-size: 1.8em;
-            line-height: 1.428571429;
-            margin: 0;
-            padding: 6px;
-            text-align: center;
+        .modal-content {
+            .modal-body {
+                -webkit-box-shadow: 0 4px 7px rgba(0, 0, 0, 0.3);
+                -moz-box-shadow: 0 4px 7px rgba(0, 0, 0, 0.3);
+                box-shadow: 0 4px 7px rgba(0, 0, 0, 0.3);
 
-            .rating {
-                position: absolute;
-                left: 20px;
-                top: 10px;
-                font-size: 0.8em;
-            }
+                .image {
+                    height: @moviedialogimageheight;
+                    margin-bottom: 20px;
 
-            .watched-icon {
-                position: absolute;
-                color: #ccc;
-                font-size: 0.8em;
-                right: 20px;
-                top: 10px;
-
-                .glyphicon-eye-open {
-                    color: @accentcolor;
-                }
-            }
-        }
-
-        .image {
-            position: relative;
-            height: @moviedialogimageheight;
-            margin-bottom: 20px;
-            width: 100%;
-
-            img {
-                position: absolute;
-                top: @moviedialogimageoffset * -1;
-                clip: rect(@moviedialogimageoffset, @moviedialogwidth, @moviedialogimageheight + @moviedialogimageoffset, 0);
-                width: @moviedialogwidth;
-            }
-        }
-
-        .content {
-            .plot {
-                font-size: 1.1em;
-                padding: 0 60px 10px;
-                text-align: center;
-            }
-
-            .buttons {
-                background-color: #EFEFEF;
-                text-align: center;
-
-                .btn {
-                    background-color: #E6E6E6;
-                    color: #000;
-                }
-            }
-
-            .info {
-                padding: 10px 60px;
-
-                h2 {
-                    font-size: 1.4em;
-                    margin: 0;
-                    padding-bottom: 6px;
-                    padding-top: 6px;
+                    img {
+                        top: @moviedialogimageoffset * -1;
+                        clip: rect(@moviedialogimageoffset, @moviedialogwidth, @moviedialogimageheight + @moviedialogimageoffset, 0);
+                        width: @moviedialogwidth;
+                    }
                 }
 
-                ul {
-                    list-style-type: none;
-                    padding-left: 0;
+                .content {
+                    .plot {
+                        font-size: 1.1em;
+                        padding-left: 60px;
+                        padding-right: 60px;
+                    }
 
-                    li {
-                        padding-left: 0;
+                    .info {
+                        padding: 10px 60px;
                     }
                 }
             }
@@ -616,8 +680,6 @@ h1 {
                         }
 
                         &:hover {
-                            cursor: pointer;
-
                             .overlay-fluid {
                                 -moz-transform: translate(0, -55px);
                                 -ms-transform: translate(0, -55px);

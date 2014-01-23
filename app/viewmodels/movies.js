@@ -38,8 +38,8 @@
             var infoDialog = new movieDialog();
             window.currentInfoDialog = infoDialog;
 
-            dialog.getContext('infoDialog').navigateAfterCloseUrl = '#movies';
-            dialog.show(infoDialog, movie, 'infoDialog');
+            dialog.getContext('bootstrap').navigateAfterCloseUrl = '#movies';
+            dialog.show(infoDialog, movie, 'bootstrap');
         }
     };
 
@@ -59,7 +59,6 @@
     ];
 
     ko.utils.arrayPushAll(model.movies, movies);
-    window.movies = movies;
 
     return model;
 });

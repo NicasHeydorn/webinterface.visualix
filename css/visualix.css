@@ -225,6 +225,106 @@ h1 {
   top: 0;
   z-index: 101;
 }
+.section ul.movie-list-inline li:hover,
+.section ul.tvshow-list-inline li:hover {
+  cursor: pointer;
+}
+.modal-dialog {
+  margin: 0;
+}
+.modal-dialog .modal-content {
+  border: none;
+  border-radius: 0;
+  -webkit-box-shadow: none;
+  -moz-box-shadow: none;
+  box-shadow: none;
+}
+.modal-dialog .modal-content .modal-body {
+  -webkit-background-clip: padding-box;
+  -moz-background-clip: padding-box;
+  background-clip: padding-box;
+  background-color: white;
+  outline: none;
+  padding: 0;
+}
+.modal-dialog .modal-content .modal-body h1 {
+  position: relative;
+  font-size: 1.2em;
+  line-height: 1.428571429;
+  margin: 0;
+  padding: 36px 6px 6px;
+  text-align: center;
+}
+.modal-dialog .modal-content .modal-body h1 .rating {
+  position: absolute;
+  left: 20px;
+  top: 10px;
+  font-size: 0.8em;
+}
+.modal-dialog .modal-content .modal-body h1 .watched-icon {
+  position: absolute;
+  color: #ccc;
+  font-size: 0.8em;
+  right: 20px;
+  top: 10px;
+}
+.modal-dialog .modal-content .modal-body h1 .watched-icon .glyphicon-eye-open {
+  color: #f0a30a;
+}
+.modal-dialog .modal-content .modal-body .image {
+  position: relative;
+  height: 150px;
+  width: 100%;
+}
+.modal-dialog .modal-content .modal-body .image img {
+  position: absolute;
+  width: 100%;
+}
+.modal-dialog .modal-content .modal-body .content {
+  background-color: #FFF;
+  padding-top: 20px;
+}
+.modal-dialog .modal-content .modal-body .content .plot {
+  font-size: 1.1em;
+  padding: 0 20px 10px;
+  text-align: center;
+}
+.modal-dialog .modal-content .modal-body .content .buttons {
+  background-color: #EFEFEF;
+  text-align: center;
+}
+.modal-dialog .modal-content .modal-body .content .buttons .btn {
+  background-color: #E6E6E6;
+  color: #000;
+}
+.modal-dialog .modal-content .modal-body .content .info {
+  margin-right: 0;
+  padding: 20px;
+}
+.modal-dialog .modal-content .modal-body .content .info h2 {
+  font-size: 1.4em;
+  margin: 0;
+  padding-bottom: 6px;
+  padding-top: 6px;
+}
+.modal-dialog .modal-content .modal-body .content .info ul {
+  list-style-type: none;
+  padding-left: 0;
+}
+.modal-dialog .modal-content .modal-body .content .info ul li {
+  padding-left: 0;
+}
+.modal-backdrop {
+  display: none !important;
+}
+.modal {
+  position: absolute;
+  overflow: visible;
+  top: 145px;
+}
+.modal-open {
+  overflow: auto;
+}
 @media (min-width: 768px) {
   .background {
     height: 210px;
@@ -286,6 +386,29 @@ h1 {
     height: 192px;
     width: 126px;
   }
+  .modal-dialog {
+    margin: 20px;
+    width: auto;
+  }
+  .modal-dialog .modal-content {
+    border-top: 5px solid #f0a30a;
+  }
+  .modal-dialog .modal-content .modal-body h1 {
+    font-size: 1.8em;
+    padding-top: 6px;
+  }
+  .modal-backdrop {
+    display: block !important;
+  }
+  .modal {
+    position: fixed;
+    overflow: auto;
+    overflow-y: auto;
+    top: 0;
+  }
+  .modal-open {
+    overflow: hidden;
+  }
 }
 @media (min-width: 992px) {
   .background {
@@ -313,113 +436,31 @@ h1 {
     height: 212px;
     width: 142px;
   }
-  .modalBlockout {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: #000;
-    opacity: 0;
-    -moz-backface-visibility: hidden;
-    -webkit-backface-visibility: hidden;
-    backface-visibility: hidden;
-    -webkit-transition: opacity 0.1s linear;
-    -moz-transition: opacity 0.1s linear;
-    -o-transition: opacity 0.1s linear;
-    transition: opacity 0.1s linear;
+  .modal-dialog {
+    margin: 30px auto;
+    width: 892px;
   }
-  .modalHost {
-    position: fixed;
-    top: 50%;
-    left: 50%;
-    opacity: 0;
-    -moz-backface-visibility: hidden;
-    -webkit-backface-visibility: hidden;
-    backface-visibility: hidden;
-    max-height: 100%;
-    -webkit-transition: opacity 0.1s linear;
-    -moz-transition: opacity 0.1s linear;
-    -o-transition: opacity 0.1s linear;
-    transition: opacity 0.1s linear;
-  }
-  .movie-info {
-    -webkit-background-clip: padding-box;
-    -moz-background-clip: padding-box;
-    background-clip: padding-box;
-    background-color: white;
+  .modal-dialog .modal-content .modal-body {
     -webkit-box-shadow: 0 4px 7px rgba(0, 0, 0, 0.3);
     -moz-box-shadow: 0 4px 7px rgba(0, 0, 0, 0.3);
     box-shadow: 0 4px 7px rgba(0, 0, 0, 0.3);
-    height: 100%;
-    width: 892px;
-    outline: none;
   }
-  .movie-info h1 {
-    position: relative;
-    border-top: 5px solid #f0a30a;
-    font-size: 1.8em;
-    line-height: 1.428571429;
-    margin: 0;
-    padding: 6px;
-    text-align: center;
-  }
-  .movie-info h1 .rating {
-    position: absolute;
-    left: 20px;
-    top: 10px;
-    font-size: 0.8em;
-  }
-  .movie-info h1 .watched-icon {
-    position: absolute;
-    color: #ccc;
-    font-size: 0.8em;
-    right: 20px;
-    top: 10px;
-  }
-  .movie-info h1 .watched-icon .glyphicon-eye-open {
-    color: #f0a30a;
-  }
-  .movie-info .image {
-    position: relative;
+  .modal-dialog .modal-content .modal-body .image {
     height: 200px;
     margin-bottom: 20px;
-    width: 100%;
   }
-  .movie-info .image img {
-    position: absolute;
+  .modal-dialog .modal-content .modal-body .image img {
     top: -40px;
     clip: rect(40px, 892px, 240px, 0);
     width: 892px;
   }
-  .movie-info .content .plot {
+  .modal-dialog .modal-content .modal-body .content .plot {
     font-size: 1.1em;
-    padding: 0 60px 10px;
-    text-align: center;
+    padding-left: 60px;
+    padding-right: 60px;
   }
-  .movie-info .content .buttons {
-    background-color: #EFEFEF;
-    text-align: center;
-  }
-  .movie-info .content .buttons .btn {
-    background-color: #E6E6E6;
-    color: #000;
-  }
-  .movie-info .content .info {
+  .modal-dialog .modal-content .modal-body .content .info {
     padding: 10px 60px;
-  }
-  .movie-info .content .info h2 {
-    font-size: 1.4em;
-    margin: 0;
-    padding-bottom: 6px;
-    padding-top: 6px;
-  }
-  .movie-info .content .info ul {
-    list-style-type: none;
-    padding-left: 0;
-  }
-  .movie-info .content .info ul li {
-    padding-left: 0;
   }
 }
 @media (min-width: 1200px) {
@@ -461,10 +502,6 @@ h1 {
   .section ul.tvshow-list-inline li.image-container .overlay-fluid {
     bottom: -55px;
     color: #FFF;
-  }
-  .section ul.movie-list-inline li.image-container:hover,
-  .section ul.tvshow-list-inline li.image-container:hover {
-    cursor: pointer;
   }
   .section ul.movie-list-inline li.image-container:hover .overlay-fluid,
   .section ul.tvshow-list-inline li.image-container:hover .overlay-fluid {

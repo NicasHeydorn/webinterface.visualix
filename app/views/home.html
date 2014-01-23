@@ -2,77 +2,11 @@
     <div class="row section">
         <div class="col-md-12">
             <h1>Recent movies</h1>
-            <ul class="movie-list-inline">
-                <li class="image-container watched">
-                    <a href="#">
-                        <img src="images/posters/40-year-old-virgin-poster1.jpg" alt="The 40 Year Old Virgin" />
-                        <div class="overlay-fluid">The 40 Year Old Virgin</div>
-                    </a>
-                </li>
-                <li class="image-container watched">
-                    <a href="#">
-                        <img src="images/posters/avatar.jpg" alt="Avatar" />
-                        <div class="overlay-fluid">Avatar</div>
-                    </a>
-                </li>
-                <li class="image-container watched">
-                    <a href="#">
-                        <img src="images/posters/Brave_FilmPosters.jpg" alt="Brave" />
-                        <div class="overlay-fluid">Brave</div>
-                    </a>
-                </li>
-                <li class="image-container watched">
-                    <a href="#">
-                        <img src="images/posters/dark-knight.jpg" alt="The Dark Knight" />
-                        <div class="overlay-fluid">The Dark Knight</div>
-                    </a>
-                </li>
-                <li class="image-container watched">
-                    <a href="#">
-                        <img src="images/posters/hanna_xlg.jpg" alt="Hanna" />
-                        <div class="overlay-fluid">Hanna</div>
-                    </a>
-                </li>
-                <li class="image-container watched">
-                    <a href="#">
-                        <img src="images/posters/iron-man-movie-poster-6.jpg" alt="Iron Man" />
-                        <div class="overlay-fluid">Iron Man</div>
-                    </a>
-                </li>
-                <li class="image-container watched">
-                    <a href="#">
-                        <img src="images/posters/jurassicpark.jpg" alt="Jurassic Park" />
-                        <div class="overlay-fluid">Jurassic Park</div>
-                    </a>
-                </li>
-                <li class="image-container watched">
-                    <a href="#">
-                        <img src="images/posters/man_of_steel_ver3_xlg.jpg" alt="Man Of Steel" />
-                        <div class="overlay-fluid">Man Of Steel</div>
-                    </a>
-                </li>
-                <li class="image-container watched">
-                    <a href="#" class="glossy">
-                        <img src="images/posters/Oblivion-Movie-Poster-Morgan-Freeman-Tom-Cruise.jpg" alt="Oblivion" />
-                        <div class="overlay-fluid">Oblivion</div>
-                    </a>
-                </li>
-                <li class="image-container">
-                    <a href="#" class="glossy">
-                        <img src="images/posters/rise of the guardians.jpg" alt="Rise of the Guardians" />
-                        <div class="overlay-fluid">Rise of the Guardians</div>
-                    </a>
-                </li>
-                <li class="image-container watched">
-                    <a href="#" class="glossy">
-                        <img src="images/posters/sherlock.jpg" alt="Sherlock Holmes: A Game of Shadows" />
-                        <div class="overlay-fluid">Sherlock Holmes: A Game of Shadows</div>
-                    </a>
-                </li>
-                <li class="image-container">
-                    <a href="#">
-                        <img src="images/posters/thor-poster1.jpg" alt="Thor" />
-                        <div class="overlay-fluid">Thor</div>
+            <ul class="movie-list-inline" data-bind="foreach: movies()">
+                <li class="image-container" data-bind="css: { watched: isWatched }">
+                    <a data-bind="click: $parent.openMovieDetails">
+                        <img data-bind="attr: { src: poster, alt: title }" alt="" src="#" />
+                        <div class="overlay-fluid" data-bind="html: title"></div>
                     </a>
                 </li>
             </ul>

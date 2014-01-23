@@ -125,11 +125,17 @@ h1 {
   text-align: center;
   width: 50px;
 }
-.navbar > ul > li:last-child {
-  border-right: none;
+.navbar > ul > li > a {
+  border-bottom: 2px solid transparent;
 }
 .navbar > ul > li > a > span {
   display: none;
+}
+.navbar > ul > li:last-child {
+  border-right: none;
+}
+.navbar > ul > li.active a {
+  border-bottom: 2px solid #f0a30a;
 }
 .container {
   background-color: #ffffff;
@@ -161,14 +167,15 @@ h1 {
 }
 .section ul.movie-list-inline li.image-container,
 .section ul.tvshow-list-inline li.image-container {
+  position: relative;
   overflow: hidden;
   padding: 0;
-  position: relative;
 }
 .section ul.movie-list-inline li.image-container .overlay,
 .section ul.tvshow-list-inline li.image-container .overlay,
 .section ul.movie-list-inline li.image-container .overlay-fluid,
 .section ul.tvshow-list-inline li.image-container .overlay-fluid {
+  position: absolute;
   background-color: #1E1E1E;
   bottom: 0;
   color: #FFF;
@@ -177,7 +184,6 @@ h1 {
   opacity: .8;
   overflow: hidden;
   padding: 4px;
-  position: absolute;
   text-align: center;
   width: 100%;
 }
@@ -188,7 +194,7 @@ h1 {
 }
 .section ul.movie-list-inline li.image-container.watched,
 .section ul.tvshow-list-inline li.image-container.watched {
-  border: 3px #666666 solid;
+  border: 3px #f0a30a solid;
 }
 .section ul.movie-list-inline li.image-container.watched img,
 .section ul.tvshow-list-inline li.image-container.watched img {
@@ -212,7 +218,7 @@ h1 {
 .section ul.tvshow-list-inline li.image-container.watched:after {
   position: absolute;
   display: block;
-  border-top: 28px solid #666666;
+  border-top: 28px solid #f0a30a;
   border-left: 28px solid rgba(0, 0, 0, 0);
   right: 0;
   content: "";
@@ -254,6 +260,7 @@ h1 {
   .section ul.tvshow-list-inline li.image-container .overlay,
   .section ul.movie-list-inline li.image-container .overlay-fluid,
   .section ul.tvshow-list-inline li.image-container .overlay-fluid {
+    position: absolute;
     background-color: #1E1E1E;
     bottom: 0;
     color: #FFF;
@@ -262,7 +269,6 @@ h1 {
     opacity: .8;
     overflow: hidden;
     padding: 8px 4px;
-    position: absolute;
     text-align: center;
     width: 100%;
   }
@@ -273,7 +279,7 @@ h1 {
   }
   .section ul.movie-list-inline li.image-container.watched,
   .section ul.tvshow-list-inline li.image-container.watched {
-    border: 4px #666666 solid;
+    border-width: 4px;
   }
   .section ul.movie-list-inline li.image-container.watched img,
   .section ul.tvshow-list-inline li.image-container.watched img {
@@ -300,7 +306,7 @@ h1 {
   }
   .section ul.movie-list-inline li.image-container.watched,
   .section ul.tvshow-list-inline li.image-container.watched {
-    border: 4px #666666 solid;
+    border-width: 4px;
   }
   .section ul.movie-list-inline li.image-container.watched img,
   .section ul.tvshow-list-inline li.image-container.watched img {
@@ -324,9 +330,9 @@ h1 {
     transition: opacity 0.1s linear;
   }
   .modalHost {
+    position: fixed;
     top: 50%;
     left: 50%;
-    position: fixed;
     opacity: 0;
     -moz-backface-visibility: hidden;
     -webkit-backface-visibility: hidden;
@@ -337,32 +343,83 @@ h1 {
     -o-transition: opacity 0.1s linear;
     transition: opacity 0.1s linear;
   }
-  .modalHost .movie-info {
+  .movie-info {
     -webkit-background-clip: padding-box;
     -moz-background-clip: padding-box;
     background-clip: padding-box;
     background-color: white;
-    -webkit-box-shadow: 0 3px 7px rgba(0, 0, 0, 0.3);
-    -moz-box-shadow: 0 3px 7px rgba(0, 0, 0, 0.3);
-    box-shadow: 0 3px 7px rgba(0, 0, 0, 0.3);
-    min-height: 500px;
+    -webkit-box-shadow: 0 4px 7px rgba(0, 0, 0, 0.3);
+    -moz-box-shadow: 0 4px 7px rgba(0, 0, 0, 0.3);
+    box-shadow: 0 4px 7px rgba(0, 0, 0, 0.3);
     height: 100%;
     width: 892px;
     outline: none;
   }
-  .modalHost .movie-info h1 {
+  .movie-info h1 {
+    position: relative;
+    border-top: 5px solid #f0a30a;
     font-size: 1.8em;
     line-height: 1.428571429;
     margin: 0;
-    padding-bottom: 4px;
+    padding: 6px;
     text-align: center;
   }
-  .modalHost .movie-info .image {
-    height: 150px;
+  .movie-info h1 .rating {
+    position: absolute;
+    left: 20px;
+    top: 10px;
+    font-size: 0.8em;
+  }
+  .movie-info h1 .watched-icon {
+    position: absolute;
+    color: #ccc;
+    font-size: 0.8em;
+    right: 20px;
+    top: 10px;
+  }
+  .movie-info h1 .watched-icon .glyphicon-eye-open {
+    color: #f0a30a;
+  }
+  .movie-info .image {
+    position: relative;
+    height: 200px;
+    margin-bottom: 20px;
     width: 100%;
   }
-  .modalHost .movie-info .image img {
+  .movie-info .image img {
+    position: absolute;
+    top: -40px;
+    clip: rect(40px, 892px, 240px, 0);
     width: 892px;
+  }
+  .movie-info .content .plot {
+    font-size: 1.1em;
+    padding: 0 60px 10px;
+    text-align: center;
+  }
+  .movie-info .content .buttons {
+    background-color: #EFEFEF;
+    text-align: center;
+  }
+  .movie-info .content .buttons .btn {
+    background-color: #E6E6E6;
+    color: #000;
+  }
+  .movie-info .content .info {
+    padding: 10px 60px;
+  }
+  .movie-info .content .info h2 {
+    font-size: 1.4em;
+    margin: 0;
+    padding-bottom: 6px;
+    padding-top: 6px;
+  }
+  .movie-info .content .info ul {
+    list-style-type: none;
+    padding-left: 0;
+  }
+  .movie-info .content .info ul li {
+    padding-left: 0;
   }
 }
 @media (min-width: 1200px) {

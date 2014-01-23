@@ -1,4 +1,4 @@
-﻿define(['plugins/router', 'durandal/app', 'knockout', 'plugins/dialog'], function (router, app, ko, dialog) {
+﻿define(['plugins/router', 'durandal/app', 'knockout', 'plugins/dialog', 'viewmodels/movie-dialog'], function (router, app, ko, dialog, movieDialog) {
     var model = {
         movies: ko.observableArray(),
         movieid: ko.observable(null),
@@ -24,11 +24,22 @@
 
             model.movieid(movieid);
             
-            var infoDialog = new dialog.MessageBox();
-            window.currentInfoDialog = infoDialog;
+            // Retrieve the movie object.
+            var movie = {
+                movieid: movieid,
+                title: 'The 40 Year Old Virgin',
+                runtime: 118,
+                year: 2009,
+                isWatched: true,
+                fanart: 'images/40yov.jpg',
+                plot: 'Andy Stitzer has a pleasant life with a nice apartment and a job stamping invoices at an electronics store. But at age 40, there\'s one thing Andy hasn\'t done, and it\'s really bothering his sex-obsessed male co-workers: Andy is still a virgin. Determined to help Andy get laid, the guys make it their mission to de-virginize him. But it all seems hopeless until Andy meets small business owner Trish, a single mom.'
+            };
             
-            dialog.show(infoDialog, [movieid, "titel", {}], 'infoDialog');
+            var infoDialog = new movieDialog();
+            window.currentInfoDialog = infoDialog;
 
+            dialog.getContext('infoDialog').navigateAfterCloseUrl = '#movies';
+            dialog.show(infoDialog, movie, 'infoDialog');
         }
     };
 

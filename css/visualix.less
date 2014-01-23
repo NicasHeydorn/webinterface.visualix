@@ -7,12 +7,12 @@
     margin-left: (@numberOfItems * @itemwidth) / -2
 }
 
-@backgroundcolor: rgb(255, 255, 255);
-@menuitemwidth: 50px;
-@searchareaheight: 100px;
-@searchformwidth: 250px;
-@watchedbordercolor: #666;
-@watchedbordersize: 3px;
+@accentcolor:           #F0A30A;
+@backgroundcolor:       rgb(255, 255, 255);
+@menuitemwidth:         50px;
+@searchareaheight:      100px;
+@searchformwidth:       250px;
+@watchedbordersize:     3px;
 
 @segoeFontFamily:       'Segoe UI_', 'Open Sans', Verdana, Arial, Helvetica, sans-serif;
 @segoeLightFontFamily:  'Segoe UI Light_', 'Open Sans Light', Verdana, Arial, Helvetica, sans-serif;
@@ -179,14 +179,20 @@ h1 {
             text-align: center;
             width: @menuitemwidth;
 
+            > a {
+                border-bottom: 2px solid transparent;
+
+                > span {
+                    display: none;
+                }
+            }
+
             &:last-child {
                 border-right: none;
             }
 
-            > a {
-                > span {
-                    display: none;
-                }
+            &.active a {
+                border-bottom: 2px solid @accentcolor;
             }
         }
     }
@@ -222,11 +228,12 @@ h1 {
 
             li {
                 &.image-container {
+                    position: relative;
                     overflow: hidden;
                     padding: 0;
-                    position: relative;
 
                     .overlay, .overlay-fluid {
+                        position: absolute;
                         background-color: #1E1E1E;
                         bottom: 0;
                         color: #FFF;
@@ -235,7 +242,6 @@ h1 {
                         opacity: .8;
                         overflow: hidden;
                         padding: 4px;
-                        position: absolute;
                         text-align: center;
                         width: 100%;
                     }
@@ -250,7 +256,7 @@ h1 {
                     }
 
                     &.watched {
-                        border: @watchedbordersize @watchedbordercolor solid;
+                        border: @watchedbordersize @accentcolor solid;
 
                         img {
                             height: @posterheight - (2 * @watchedbordersize);
@@ -273,7 +279,7 @@ h1 {
                         &:after {
                             position: absolute;
                             display: block;
-                            border-top: 28px solid @watchedbordercolor;
+                            border-top: 28px solid @accentcolor;
                             border-left: 28px solid rgba(0, 0, 0, 0);
                             right: 0;
                             content: "";
@@ -345,6 +351,7 @@ h1 {
                 li {
                     &.image-container {
                         .overlay, .overlay-fluid {
+                            position: absolute;
                             background-color: #1E1E1E;
                             bottom: 0;
                             color: #FFF;
@@ -353,7 +360,6 @@ h1 {
                             opacity: .8;
                             overflow: hidden;
                             padding: 8px 4px;
-                            position: absolute;
                             text-align: center;
                             width: 100%;
                         }
@@ -368,7 +374,7 @@ h1 {
                         }
 
                         &.watched {
-                            border: @watchedbordersize @watchedbordercolor solid;
+                            border-width: @watchedbordersize;
 
                             img {
                                 height: @posterheight - (2 * @watchedbordersize);
@@ -385,6 +391,9 @@ h1 {
 @media (min-width: 992px) {
     @searchareaheight: 250px;
     @searchformwidth: 300px;
+    @moviedialogwidth: 892px;
+    @moviedialogimageheight: 200px;
+    @moviedialogimageoffset: 40px;
 
     .background {
         height: @searchareaheight + 10;
@@ -416,7 +425,7 @@ h1 {
                         }
 
                         &.watched {
-                            border: @watchedbordersize @watchedbordercolor solid;
+                            border-width: @watchedbordersize;
 
                             img {
                                 height: @posterheight - (2 * @watchedbordersize);
@@ -447,9 +456,9 @@ h1 {
     }
 
     .modalHost {
+        position: fixed;
         top: 50%;
         left: 50%;
-        position: fixed;
         opacity: 0;
         -moz-backface-visibility: hidden;
         -webkit-backface-visibility: hidden;
@@ -459,35 +468,97 @@ h1 {
         -moz-transition: opacity 0.1s linear;
         -o-transition: opacity 0.1s linear;
         transition: opacity 0.1s linear;
+    }
 
-        @dialogwidth: 892px;
-        .movie-info {
-            -webkit-background-clip: padding-box;
-            -moz-background-clip: padding-box;
-            background-clip: padding-box;
-            background-color: white;
-            -webkit-box-shadow: 0 3px 7px rgba(0, 0, 0, 0.3);
-            -moz-box-shadow: 0 3px 7px rgba(0, 0, 0, 0.3);
-            box-shadow: 0 3px 7px rgba(0, 0, 0, 0.3);
-            min-height: 500px;
-            height: 100%;
-            width: @dialogwidth;
-            outline: none;
+    .movie-info {
+        -webkit-background-clip: padding-box;
+        -moz-background-clip: padding-box;
+        background-clip: padding-box;
+        background-color: white;
+        -webkit-box-shadow: 0 4px 7px rgba(0, 0, 0, 0.3);
+        -moz-box-shadow: 0 4px 7px rgba(0, 0, 0, 0.3);
+        box-shadow: 0 4px 7px rgba(0, 0, 0, 0.3);
+        height: 100%;
+        width: @moviedialogwidth;
+        outline: none;
 
-            h1 {
-                font-size: 1.8em;
-                line-height: 1.428571429;
-                margin: 0;
-                padding-bottom: 4px;
+        h1 {
+            position: relative;
+            border-top: 5px solid @accentcolor;
+            font-size: 1.8em;
+            line-height: 1.428571429;
+            margin: 0;
+            padding: 6px;
+            text-align: center;
+
+            .rating {
+                position: absolute;
+                left: 20px;
+                top: 10px;
+                font-size: 0.8em;
+            }
+
+            .watched-icon {
+                position: absolute;
+                color: #ccc;
+                font-size: 0.8em;
+                right: 20px;
+                top: 10px;
+
+                .glyphicon-eye-open {
+                    color: @accentcolor;
+                }
+            }
+        }
+
+        .image {
+            position: relative;
+            height: @moviedialogimageheight;
+            margin-bottom: 20px;
+            width: 100%;
+
+            img {
+                position: absolute;
+                top: @moviedialogimageoffset * -1;
+                clip: rect(@moviedialogimageoffset, @moviedialogwidth, @moviedialogimageheight + @moviedialogimageoffset, 0);
+                width: @moviedialogwidth;
+            }
+        }
+
+        .content {
+            .plot {
+                font-size: 1.1em;
+                padding: 0 60px 10px;
                 text-align: center;
             }
 
-            .image {
-                height: 150px;
-                width: 100%;
+            .buttons {
+                background-color: #EFEFEF;
+                text-align: center;
 
-                img {
-                    width: @dialogwidth;
+                .btn {
+                    background-color: #E6E6E6;
+                    color: #000;
+                }
+            }
+
+            .info {
+                padding: 10px 60px;
+
+                h2 {
+                    font-size: 1.4em;
+                    margin: 0;
+                    padding-bottom: 6px;
+                    padding-top: 6px;
+                }
+
+                ul {
+                    list-style-type: none;
+                    padding-left: 0;
+
+                    li {
+                        padding-left: 0;
+                    }
                 }
             }
         }

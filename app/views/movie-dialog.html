@@ -1,0 +1,52 @@
+﻿<div class="movie-info" data-auto-close="true">
+    <h1>
+        <span class="rating">
+            <i class="glyphicon glyphicon-star"></i><i class="glyphicon glyphicon-star"></i><i class="glyphicon glyphicon-star"></i><i class="glyphicon glyphicon-star"></i><i class="glyphicon glyphicon-star-empty"></i>
+        </span>
+        <span data-bind="html: movie.title"></span>
+        <small data-bind="html: '(' + movie.year + ')'"></small>
+        <a class="watched-icon">
+            <i class="glyphicon" data-bind="css: { 'glyphicon-eye-open': movie.isWatched, 'glyphicon-eye-close': !movie.isWatched }"></i>
+        </a>
+    </h1>
+    <div class="image">
+        <img data-bind="attr: { src: movie.fanart }" src="." alt="Fanart" />
+    </div>
+    <div class="content">
+        <p class="plot" data-bind="html: movie.plot"></p>
+        <div class="buttons">
+            <a class="btn btn-lg"><i class="glyphicon glyphicon-play-circle"></i> Play movie</a>
+        </div>
+        <div class="row info">
+            <div class="col-md-4 col-sm-6">
+                <h2>Actors</h2>
+                <ul>
+                    <li>Steve Carell as Andy Stitzer</li>
+                    <li>Catherine Keener as Trish</li>
+                    <li>Paul Rudd as David</li>
+                    <li>Romany Malco as Jay</li>
+                    <li>Seth Rogen as Cal</li>
+                </ul>
+            </div>
+            <div class="col-md-4 col-sm-6">
+                <h2>Writer</h2>
+                <ul>
+                    <li>Judd Apatow</li>
+                    <li>Steve Carell</li>
+                </ul>
+            </div>
+            <div class="col-md-4 col-sm-6">
+                <h2>Director</h2>
+                <ul>
+                    <li>Judd Apatow</li>
+                </ul>
+            </div>
+            <div class="col-md-4 col-sm-6">
+                <h2>Genre</h2>
+                <ul>
+                    <li>Comedy / Romance</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>

@@ -24,11 +24,12 @@ define(['durandal/system', 'durandal/app', 'durandal/viewLocator', 'plugins/dial
     });
     
     /**
-     * @class DialogContext
+     * @class InfoDialogContext
      */
     dialog.addContext('infoDialog', {
         blockoutOpacity: .2,
         removeDelay: 200,
+        navigateAfterCloseUrl: null,
         /**
          * In this function, you are expected to add a DOM element to the tree which will serve as the "host" for the modal's composed view. You must add a property called host to the modalWindow object which references the dom element. It is this host which is passed to the composition module.
          * @method addHost
@@ -86,7 +87,8 @@ define(['durandal/system', 'durandal/app', 'durandal/viewLocator', 'plugins/dial
                 }
             }
 
-            router.navigate('#movies');
+            if (this.navigateAfterCloseUrl && this.navigateAfterCloseUrl.length > 0)
+                router.navigate(this.navigateAfterCloseUrl);
         },
         attached: function (view) {
             //To prevent flickering in IE8, we set visibility to hidden first, and later restore it
@@ -148,7 +150,7 @@ define(['durandal/system', 'durandal/app', 'durandal/viewLocator', 'plugins/dial
             setDialogPosition();
             loadables.load(setDialogPosition);
 
-            if ($child.hasClass('autoclose')) {
+            if ($child.data('autoClose') === true) {
                 $(theDialog.blockout).click(function () {
                     theDialog.close();
                 });

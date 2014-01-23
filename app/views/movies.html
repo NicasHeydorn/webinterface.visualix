@@ -1,0 +1,15 @@
+﻿<div class="container">
+    <div class="row section">
+        <div class="col-md-12">
+            <h1>Movies</h1>
+            <ul class="movie-list-inline" data-bind="foreach: movies()">
+                <li class="image-container" data-bind="css: { watched: isWatched }">
+                    <a data-bind="click: $parent.openDetails">
+                        <img data-bind="attr: { src: poster, alt: title }" alt="" src="#" />
+                        <div class="overlay-fluid" data-bind="html: title"></div>
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</div>

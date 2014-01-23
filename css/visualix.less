@@ -1,0 +1,571 @@
+﻿.postersize(@width) {
+    height: @width / 0.675;
+    width: @width;
+}
+
+.menuoffset(@numberOfItems, @itemwidth) {
+    margin-left: (@numberOfItems * @itemwidth) / -2
+}
+
+@backgroundcolor: rgb(255, 255, 255);
+@menuitemwidth: 50px;
+@searchareaheight: 100px;
+@searchformwidth: 250px;
+@watchedbordercolor: #666;
+@watchedbordersize: 3px;
+
+@segoeFontFamily:       'Segoe UI_', 'Open Sans', Verdana, Arial, Helvetica, sans-serif;
+@segoeLightFontFamily:  'Segoe UI Light_', 'Open Sans Light', Verdana, Arial, Helvetica, sans-serif;
+@segoeBoldFontFamily:   'Segoe UI Semibold_', 'Open Sans Bold', Verdana, Arial, Helvetica, sans-serif;
+@cambriaFontFamily:     'Cambria_', 'PT Serif Caption', Verdana, Arial, Helvetica, sans-serif;
+@sansFontFamily:        "Helvetica Neue", Helvetica, Arial, sans-serif;
+@serifFontFamily:       Georgia, "Times New Roman", Times, serif;
+@monoFontFamily:        'Courier New', monospace;
+
+// Font is used to replace Cambria Font
+@font-face {
+    font-family: "PT Serif Caption";
+    font-style: normal;
+    font-weight: 400;
+    src: local("Cambria"), local("PT Serif Caption"), local("PTSerif-Caption"), url(https://themes.googleusercontent.com/static/fonts/ptserifcaption/v4/7xkFOeTxxO1GMC1suOUYWWhBabBbEjGd1iRmpyoZukE.woff) format('woff');
+}
+
+// Font is used to replace Segoe UI Font
+// Replace Segoe UI Light
+@font-face {
+    font-family: "Open Sans Light";
+    font-style: normal;
+    font-weight: 300;
+    src: local("Segoe UI Light"), local("Open Sans Light"), local("OpenSans-Light"), url(https://themes.googleusercontent.com/static/fonts/opensans/v6/DXI1ORHCpsQm3Vp6mXoaTZ1r3JsPcQLi8jytr04NNhU.woff) format('woff');
+}
+
+// Replace Segoe UI
+@font-face {
+    font-family: "Open Sans";
+    font-style: normal;
+    font-weight: 400;
+    src: local("Segoe UI"), local("Open Sans"), local("OpenSans"), url(https://themes.googleusercontent.com/static/fonts/opensans/v6/K88pR3goAWT7BTt32Z01mz8E0i7KZn-EPnyo3HZu7kw.woff) format('woff');
+}
+
+// Replace Segoe UI Bold
+@font-face {
+    font-family: "Open Sans Bold";
+    font-style: normal;
+    font-weight: 700;
+    src: local("Segoe UI Bold"), local("Open Sans Bold"), local("OpenSans-Bold"), url(https://themes.googleusercontent.com/static/fonts/opensans/v6/k3k702ZOKiLJc3WVjuplzJ1r3JsPcQLi8jytr04NNhU.woff) format('woff');
+}
+
+#font {
+    .light {
+        font-weight: 300;
+    }
+
+    .normal {
+        font-weight: normal;
+        font-style: normal;
+    }
+
+    .bold {
+        font-weight: bold;
+    }
+
+    .italic {
+        font-style: italic;
+    }
+
+    .segoe {
+        font-family: @segoeFontFamily;
+    }
+
+    .segoe-bold {
+        font-family: @segoeBoldFontFamily;
+    }
+
+    .segoe-light {
+        font-family: @segoeLightFontFamily;
+    }
+
+    .cambria {
+        font-family: @cambriaFontFamily;
+    }
+
+    .mono {
+        font-family: @monoFontFamily;
+    }
+
+    .serif {
+        font-family: @serifFontFamily;
+    }
+
+    .sans {
+        font-family: @sansFontFamily;
+    }
+}
+
+*:not(.glyphicon) {
+    #font > .segoe-light;
+    #font > .normal;
+}
+
+h1 {
+    margin-top: 8px;
+}
+
+.form-control {
+    border-radius: 0;
+}
+
+.btn {
+    border-radius: 0;
+}
+
+.background {
+    position: absolute;
+    background-image: url('../images/27-wallpapers-suits-tv-series.jpg');
+    background-repeat: no-repeat;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+    height: @searchareaheight;
+    left: 0;
+    opacity: 0.75;
+    right: 0;
+    top: 0;
+    z-index: 0;
+}
+
+.content {
+    position: relative;
+    z-index: 10;
+}
+
+.search-area {
+    height: @searchareaheight;
+
+    > .form {
+        position: relative;
+        text-align: center;
+        left: 50%;
+        top: 35px;
+        margin-left: @searchformwidth / -2;
+        width: @searchformwidth;
+
+        h1 {
+            display: none;
+            font-size: 1.8em;
+        }
+    }
+}
+
+.navbar {
+    background-color: rgba(248, 248, 248, 0.95);
+    border-radius: 0;
+    margin: 0;
+    min-height: 0;
+    z-index: 1000;
+
+    > ul {
+        position: relative;
+        float: left;
+        left: 50%;
+        margin-bottom: 0;
+        margin-top: 0;
+        .menuoffset(3, @menuitemwidth);
+
+        > li {
+            background-color: #EEE !important;
+            border-right: 1px solid rgba(248, 248, 248, 0.85);
+            float: left;
+            text-align: center;
+            width: @menuitemwidth;
+
+            &:last-child {
+                border-right: none;
+            }
+
+            > a {
+                > span {
+                    display: none;
+                }
+            }
+        }
+    }
+}
+
+.container {
+    background-color: @backgroundcolor;
+    min-width: 320px;
+    width: auto;
+}
+
+.section {
+    background-color: rgba(253, 253, 253, 0.85);
+
+    .col-md-12 {
+        padding-left: 0;
+        padding-right: 0;
+    }
+
+    h1 {
+        font-size: 1.8em;
+        line-height: 1.428571429;
+        padding-left: 4px;
+    }
+
+    ul {
+        &.movie-list-inline,
+        &.tvshow-list-inline {
+            list-style-type: none;
+            margin: 0;
+            padding-left: 4px;
+            padding-right: 4px;
+
+            li {
+                &.image-container {
+                    overflow: hidden;
+                    padding: 0;
+                    position: relative;
+
+                    .overlay, .overlay-fluid {
+                        background-color: #1E1E1E;
+                        bottom: 0;
+                        color: #FFF;
+                        font-size: 0.8em;
+                        height: 38px;
+                        opacity: .8;
+                        overflow: hidden;
+                        padding: 4px;
+                        position: absolute;
+                        text-align: center;
+                        width: 100%;
+                    }
+
+                    @posterheight: 150px;
+                    @posterwidth: 101px;
+                    @watchedbordersize: 3px;
+
+                    img {
+                        height: @posterheight;
+                        width: @posterwidth;
+                    }
+
+                    &.watched {
+                        border: @watchedbordersize @watchedbordercolor solid;
+
+                        img {
+                            height: @posterheight - (2 * @watchedbordersize);
+                            width: @posterwidth - (2 * @watchedbordersize);
+                        }
+
+                        &:before {
+                            position: absolute;
+                            display: block;
+                            content: "\e013";
+                            color: #FFF;
+                            right: 0;
+                            font-family: 'Glyphicons Halflings' !important;
+                            font-size: 9pt;
+                            font-weight: normal;
+                            z-index: 102;
+                            top: 0;
+                        }
+
+                        &:after {
+                            position: absolute;
+                            display: block;
+                            border-top: 28px solid @watchedbordercolor;
+                            border-left: 28px solid rgba(0, 0, 0, 0);
+                            right: 0;
+                            content: "";
+                            top: 0;
+                            z-index: 101;
+                        }
+                    }
+                }
+
+                display: inline-block;
+            }
+        }
+    }
+}
+
+@media (min-width: 768px) {
+    @searchareaheight: 200px;
+    @searchformwidth: 300px;
+
+    .background {
+        height: @searchareaheight + 10;
+    }
+
+    .search-area {
+        height: @searchareaheight;
+
+        > .form {
+            margin-left: @searchformwidth / -2;
+            top: 50px;
+            width: @searchformwidth;
+
+            h1 {
+                display: block;
+                text-shadow: 1px 1px 6px #FFF;
+            }
+        }
+    }
+
+    .navbar {
+        @menuitemwidth: 125px;
+
+        > ul {
+            .menuoffset(3, @menuitemwidth);
+
+            > li {
+                width: @menuitemwidth;
+
+                > a {
+                    > i {
+                        margin-right: 8px;
+                    }
+
+                    > span {
+                        display: inline;
+                    }
+                }
+            }
+        }
+    }
+
+    .section {
+        h1 {
+            font-size: 2.6em;
+        }
+
+        ul {
+            &.movie-list-inline,
+            &.tvshow-list-inline {
+                li {
+                    &.image-container {
+                        .overlay, .overlay-fluid {
+                            background-color: #1E1E1E;
+                            bottom: 0;
+                            color: #FFF;
+                            font-size: 1em;
+                            height: 53px;
+                            opacity: .8;
+                            overflow: hidden;
+                            padding: 8px 4px;
+                            position: absolute;
+                            text-align: center;
+                            width: 100%;
+                        }
+
+                        @posterheight: 200px;
+                        @posterwidth: 134px;
+                        @watchedbordersize: 4px;
+
+                        img {
+                            height: @posterheight;
+                            width: @posterwidth;
+                        }
+
+                        &.watched {
+                            border: @watchedbordersize @watchedbordercolor solid;
+
+                            img {
+                                height: @posterheight - (2 * @watchedbordersize);
+                                width: @posterwidth - (2 * @watchedbordersize);
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+
+@media (min-width: 992px) {
+    @searchareaheight: 250px;
+    @searchformwidth: 300px;
+
+    .background {
+        height: @searchareaheight + 10;
+    }
+
+    .search-area {
+        height: @searchareaheight;
+
+        > .form {
+            margin-left: @searchformwidth / -2;
+            top: 75px;
+            width: @searchformwidth;
+        }
+    }
+
+    .section {
+        ul {
+            &.movie-list-inline,
+            &.tvshow-list-inline {
+                li {
+                    &.image-container {
+                        @posterheight: 220px;
+                        @posterwidth: 150px;
+                        @watchedbordersize: 4px;
+
+                        img {
+                            height: @posterheight;
+                            width: @posterwidth;
+                        }
+
+                        &.watched {
+                            border: @watchedbordersize @watchedbordercolor solid;
+
+                            img {
+                                height: @posterheight - (2 * @watchedbordersize);
+                                width: @posterwidth - (2 * @watchedbordersize);
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+    .modalBlockout {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: #000;
+        opacity: 0;
+        -moz-backface-visibility: hidden;
+        -webkit-backface-visibility: hidden;
+        backface-visibility: hidden;
+        -webkit-transition: opacity 0.1s linear;
+        -moz-transition: opacity 0.1s linear;
+        -o-transition: opacity 0.1s linear;
+        transition: opacity 0.1s linear;
+    }
+
+    .modalHost {
+        top: 50%;
+        left: 50%;
+        position: fixed;
+        opacity: 0;
+        -moz-backface-visibility: hidden;
+        -webkit-backface-visibility: hidden;
+        backface-visibility: hidden;
+        max-height: 100%;
+        -webkit-transition: opacity 0.1s linear;
+        -moz-transition: opacity 0.1s linear;
+        -o-transition: opacity 0.1s linear;
+        transition: opacity 0.1s linear;
+
+        @dialogwidth: 892px;
+        .movie-info {
+            -webkit-background-clip: padding-box;
+            -moz-background-clip: padding-box;
+            background-clip: padding-box;
+            background-color: white;
+            -webkit-box-shadow: 0 3px 7px rgba(0, 0, 0, 0.3);
+            -moz-box-shadow: 0 3px 7px rgba(0, 0, 0, 0.3);
+            box-shadow: 0 3px 7px rgba(0, 0, 0, 0.3);
+            min-height: 500px;
+            height: 100%;
+            width: @dialogwidth;
+            outline: none;
+
+            h1 {
+                font-size: 1.8em;
+                line-height: 1.428571429;
+                margin: 0;
+                padding-bottom: 4px;
+                text-align: center;
+            }
+
+            .image {
+                height: 150px;
+                width: 100%;
+
+                img {
+                    width: @dialogwidth;
+                }
+            }
+        }
+    }
+}
+
+@media (min-width: 1200px) {
+    .background {
+        position: fixed;
+        -moz-background-size: cover;
+        -o-background-size: cover;
+        background-size: cover;
+        bottom: 0;
+        height: auto;
+    }
+
+    .container {
+        background-color: fade(@backgroundcolor, 80%);
+    }
+
+    @searchformwidth: 400px;
+
+    .search-area {
+        height: 250px;
+
+        > .form {
+            margin-left: @searchformwidth / -2;
+            top: 65px;
+            width: @searchformwidth;
+
+            h1 {
+                font-size: 2.6em;
+            }
+
+            .form-control, .btn {
+                font-size: 18px;
+                height: 40px;
+            }
+        }
+    }
+
+    .section {
+        background-color: rgba(253, 253, 253, 0.75);
+
+        ul {
+            &.movie-list-inline,
+            &.tvshow-list-inline {
+                margin-bottom: 10px;
+
+                li {
+                    &.image-container {
+                        .overlay-fluid {
+                            bottom: -55px;
+                            color: #FFF;
+                        }
+
+                        &:hover {
+                            cursor: pointer;
+
+                            .overlay-fluid {
+                                -moz-transform: translate(0, -55px);
+                                -ms-transform: translate(0, -55px);
+                                -o-transform: translate(0, -55px);
+                                -webkit-transform: translate(0, -55px);
+                                transform: translate(0, -55px);
+                                -moz-transition: all 0.3s ease;
+                                -o-transition: all 0.3s ease;
+                                -webkit-transition: all 0.3s ease;
+                                transition: all 0.3s ease;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+
+        &:last-child {
+            padding-bottom: 20px;
+        }
+    }
+}

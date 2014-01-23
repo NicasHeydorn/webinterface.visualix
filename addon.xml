@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<addon id="webinterface.visualix"
+       version="0.1.0"
+       name="Visualix"
+       provider-name="Trickass">
+  <requires>
+    <import addon="xbmc.gui" version="4.0.0"/>
+    <import addon="xbmc.json" version="6.0.0" />
+  </requires>
+  <extension point="xbmc.gui.webinterface"/>
+  <extension point="xbmc.addon.metadata">
+    <summary lang="en">Visual web interface for controlling XMBC.</summary>
+    <description lang="en">View your movie &amp; tv show library using this web interface. Control movie playback from your browser.</description>
+    <platform>all</platform>
+    <language>en</language>
+  </extension>
+</addon>

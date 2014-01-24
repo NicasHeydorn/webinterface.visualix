@@ -183,7 +183,7 @@ h1 {
   height: 38px;
   opacity: .8;
   overflow: hidden;
-  padding: 4px;
+  padding: 3px 4px;
   text-align: center;
   width: 100%;
 }
@@ -200,6 +200,13 @@ h1 {
 .section ul.tvshow-list-inline li.image-container.watched img {
   height: 144px;
   width: 95px;
+}
+.section ul.movie-list-inline li.image-container.watched .overlay,
+.section ul.tvshow-list-inline li.image-container.watched .overlay,
+.section ul.movie-list-inline li.image-container.watched .overlay-fluid,
+.section ul.tvshow-list-inline li.image-container.watched .overlay-fluid {
+  height: 35px;
+  padding-bottom: 0px;
 }
 .section ul.movie-list-inline li.image-container.watched:before,
 .section ul.tvshow-list-inline li.image-container.watched:before {
@@ -320,7 +327,7 @@ h1 {
 .modal {
   position: absolute;
   overflow: visible;
-  top: 145px;
+  top: 144px;
 }
 .modal-open {
   overflow: auto;
@@ -368,7 +375,7 @@ h1 {
     height: 53px;
     opacity: .8;
     overflow: hidden;
-    padding: 8px 4px;
+    padding: 6px 4px;
     text-align: center;
     width: 100%;
   }
@@ -380,6 +387,13 @@ h1 {
   .section ul.movie-list-inline li.image-container.watched,
   .section ul.tvshow-list-inline li.image-container.watched {
     border-width: 4px;
+  }
+  .section ul.movie-list-inline li.image-container.watched .overlay,
+  .section ul.tvshow-list-inline li.image-container.watched .overlay,
+  .section ul.movie-list-inline li.image-container.watched .overlay-fluid,
+  .section ul.tvshow-list-inline li.image-container.watched .overlay-fluid {
+    height: 49px;
+    padding-bottom: 2px;
   }
   .section ul.movie-list-inline li.image-container.watched img,
   .section ul.tvshow-list-inline li.image-container.watched img {

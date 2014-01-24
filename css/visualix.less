@@ -9,7 +9,11 @@
 
 @accentcolor:           #F0A30A;
 @backgroundcolor:       rgb(255, 255, 255);
+@posteroverlayheight:   38px;
+@posteroverlaypadding:  3px;
 @menuitemwidth:         50px;
+@posterheight:          150px;
+@posterwidth:           101px;
 @searchareaheight:      100px;
 @searchformwidth:       250px;
 @watchedbordersize:     3px;
@@ -240,17 +244,13 @@ h1 {
                         bottom: 0;
                         color: #FFF;
                         font-size: 0.8em;
-                        height: 38px;
+                        height: @posteroverlayheight;
                         opacity: .8;
                         overflow: hidden;
-                        padding: 4px;
+                        padding: @posteroverlaypadding 4px;
                         text-align: center;
                         width: 100%;
                     }
-
-                    @posterheight: 150px;
-                    @posterwidth: 101px;
-                    @watchedbordersize: 3px;
 
                     img {
                         height: @posterheight;
@@ -263,6 +263,11 @@ h1 {
                         img {
                             height: @posterheight - (2 * @watchedbordersize);
                             width: @posterwidth - (2 * @watchedbordersize);
+                        }
+
+                        .overlay, .overlay-fluid {
+                            height: @posteroverlayheight - @watchedbordersize;
+                            padding-bottom: @posteroverlaypadding - @watchedbordersize;
                         }
 
                         &:before {
@@ -411,7 +416,7 @@ h1 {
 .modal {
     position: absolute;
     overflow: visible;
-    top: 145px;
+    top: @searchareaheight + 44px;
 }
 
 .modal-open {
@@ -419,8 +424,13 @@ h1 {
 }
 
 @media (min-width: 768px) {
-    @searchareaheight: 200px;
-    @searchformwidth: 300px;
+    @posterheight:          200px;
+    @posterwidth:           134px;
+    @posteroverlayheight:   53px;
+    @posteroverlaypadding:  6px;
+    @searchareaheight:      200px;
+    @searchformwidth:       300px;
+    @watchedbordersize:     4px;
 
     .background {
         height: @searchareaheight + 10;
@@ -479,17 +489,13 @@ h1 {
                             bottom: 0;
                             color: #FFF;
                             font-size: 1em;
-                            height: 53px;
+                            height: @posteroverlayheight;
                             opacity: .8;
                             overflow: hidden;
-                            padding: 8px 4px;
+                            padding: @posteroverlaypadding 4px;
                             text-align: center;
                             width: 100%;
                         }
-
-                        @posterheight: 200px;
-                        @posterwidth: 134px;
-                        @watchedbordersize: 4px;
 
                         img {
                             height: @posterheight;
@@ -498,6 +504,11 @@ h1 {
 
                         &.watched {
                             border-width: @watchedbordersize;
+
+                            .overlay, .overlay-fluid {
+                                height: @posteroverlayheight - @watchedbordersize;
+                                padding-bottom: @posteroverlaypadding - @watchedbordersize;
+                            }
 
                             img {
                                 height: @posterheight - (2 * @watchedbordersize);
@@ -548,6 +559,11 @@ h1 {
     @moviedialogwidth: 892px;
     @moviedialogimageheight: 200px;
     @moviedialogimageoffset: 40px;
+    @posteroverlayheight:   53px;
+    @posteroverlaypadding:  6px;
+    @posterheight: 220px;
+    @posterwidth: 150px;
+    @watchedbordersize: 4px;
 
     .background {
         height: @searchareaheight + 10;
@@ -569,10 +585,6 @@ h1 {
             &.tvshow-list-inline {
                 li {
                     &.image-container {
-                        @posterheight: 220px;
-                        @posterwidth: 150px;
-                        @watchedbordersize: 4px;
-
                         img {
                             height: @posterheight;
                             width: @posterwidth;

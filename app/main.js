@@ -30,7 +30,7 @@ define(['durandal/system', 'durandal/app', 'durandal/viewLocator', 'plugins/dial
         navigateAfterCloseUrl: null,
         
         addHost: function (theDialog) {
-            var body = $('body');
+            var body = $('.content-wrapper');
             $('<div class="modal" id="myModal"></div>').appendTo(body);
             theDialog.host = $('#myModal').get(0);
         },
@@ -43,12 +43,11 @@ define(['durandal/system', 'durandal/app', 'durandal/viewLocator', 'plugins/dial
             }, 200);
         },
         compositionComplete: function (child, parent, context) {
-            var theContext = context.model.__dialog__.context;
             var theDialog = dialog.getDialog(context.model);
             $('#myModal').modal('show');
             $('#myModal').on('hidden.bs.modal', function (e) {
-                if (theContext.navigateAfterCloseUrl && theContext.navigateAfterCloseUrl.length > 0 && $(window).width() >= 768)
-                    router.navigate(theContext.navigateAfterCloseUrl);
+                if (theDialog.context.navigateAfterCloseUrl && theDialog.context.navigateAfterCloseUrl.length > 0 && $(window).width() >= 768)
+                    router.navigate(theDialog.context.navigateAfterCloseUrl);
             });
         },
         attached: null

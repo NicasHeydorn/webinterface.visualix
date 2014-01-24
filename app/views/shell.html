@@ -1,25 +1,27 @@
 ﻿<div class="background"></div>
 
-<div class="content">
-    <div class="search-area">
-        <div class="form">
-            <h1>Find a movie or tv show</h1>
-            <div class="input-group">
-                <input type="search" class="form-control" placeholder="Search Movies & TV Shows">
-                <span class="input-group-btn">
-                    <button class="btn btn-default" type="button"><i class="glyphicon glyphicon-search"></i></button>
-                </span>
+<div class="content-wrapper">
+    <div class="content">
+        <div class="search-area">
+            <div class="form">
+                <h1>Find a movie or tv show</h1>
+                <div class="input-group">
+                    <input type="search" class="form-control" placeholder="Search Movies & TV Shows">
+                    <span class="input-group-btn">
+                        <button class="btn btn-default" type="button"><i class="glyphicon glyphicon-search"></i></button>
+                    </span>
+                </div>
             </div>
         </div>
-    </div>
 
-    <nav class="navbar navbar-default" role="navigation">
-        <ul class="nav navbar-nav" data-bind="foreach: router.navigationModel">
-            <li data-bind="css: { active: isActive }">
-                <a data-bind="attr: { href: hash }, html: content"></a>
-            </li>
-        </ul>
-    </nav>
+        <nav class="navbar navbar-default" role="navigation">
+            <ul class="nav navbar-nav" data-bind="foreach: router.navigationModel">
+                <li data-bind="css: { active: isActive }">
+                    <a data-bind="attr: { href: hash }, html: content"></a>
+                </li>
+            </ul>
+        </nav>
         
-    <div data-bind="router: { transition: 'entrance', cacheViews: true }"></div>
+        <div data-bind="router: { transition: null, cacheViews: true, skipTransitionOnSameViewId: true }"></div>
+    </div>
 </div>

@@ -1,9 +1,6 @@
 ﻿define(['plugins/router', 'durandal/app', 'knockout', 'plugins/dialog', 'viewmodels/movie-dialog', 'viewmodels/episode-dialog'], function (router, app, ko, dialog, movieDialog, episodeDialog) {
     var infoDialog = null;
     var objectToShow = null;
-
-    var fetchedMovies = {}; // Stores retrieved movies so that request only has to happen once per movie.
-    var fetchedEpisodes = {}; // Stores retrieved episodes so that request only has to happen once per episode.
     
     var model = {
         isdefault: true,

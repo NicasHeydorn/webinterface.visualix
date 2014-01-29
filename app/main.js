@@ -36,8 +36,7 @@ define(['durandal/system', 'durandal/app', 'durandal/viewLocator', 'plugins/dial
             $('<div class="modal" id="myModal"></div>').appendTo(body);
             theDialog.host = $('#myModal').get(0);
         },
-        removeHost: function (theDialog) {
-            var that = this;
+        removeHost: function () {
             setTimeout(function () {
                 $('#myModal').modal('hide');
                 $('body').removeClass('modal-open');
@@ -47,7 +46,7 @@ define(['durandal/system', 'durandal/app', 'durandal/viewLocator', 'plugins/dial
         compositionComplete: function (child, parent, context) {
             var theDialog = dialog.getDialog(context.model);
             $('#myModal').modal('show');
-            $('#myModal').on('hidden.bs.modal', function (e) {
+            $('#myModal').on('hidden.bs.modal', function () {
                 if (theDialog.context.navigateAfterCloseUrl && theDialog.context.navigateAfterCloseUrl.length > 0 && $(window).width() >= 768)
                     router.navigate(theDialog.context.navigateAfterCloseUrl);
             });
@@ -62,5 +61,7 @@ define(['durandal/system', 'durandal/app', 'durandal/viewLocator', 'plugins/dial
 
         //Show the app by setting the root view model for our application with a transition.
         app.setRoot('viewmodels/shell', 'entrance');
+        
+
     });
 });

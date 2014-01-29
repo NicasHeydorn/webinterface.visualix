@@ -492,6 +492,11 @@ h1 {
                             font-size: 1.3em;
                             margin: 0;
 
+                            span {
+                                padding-right: 30px;
+                                display: inline-block;
+                            }
+
                             small {
                                 display: none;
                             }
@@ -541,6 +546,10 @@ h1 {
 
 .modal-open {
     overflow: auto;
+
+    .container {
+        display: none;
+    }
 }
 
 @media (min-width: 768px) {
@@ -785,6 +794,11 @@ h1 {
                     .episodes-list {
                         a {
                             h2 {
+                                span {
+                                    padding-right: 0;
+                                    display: inline;
+                                }
+
                                 small {
                                     display: inline;
                                 }

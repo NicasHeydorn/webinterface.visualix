@@ -18,7 +18,7 @@
             <ul class="tvshow-list-inline" data-bind="foreach: episodes()">
                 <li class="image-container" data-bind="css: { watched: playcount > 0 }">
                     <a data-bind="click: $parent.openEpisodeDetails">
-                        <img data-bind="attr: { src: 'image/' + escape(thumbnail), alt: label }" alt="" src="#" />
+                        <img data-bind="attr: { src: 'image/' + escape(art['tvshow.poster']), alt: label }" alt="" src="#" />
                         <div class="overlay-fluid" data-bind="html: label"></div>
                     </a>
                 </li>

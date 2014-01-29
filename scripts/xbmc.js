@@ -164,7 +164,8 @@
                         'runtime',
                         'playcount',
                         'rating',
-                        'thumbnail'
+                        'thumbnail',
+                        'art'
                     ],
                     'sort': {
                         'method': 'sorttitle',

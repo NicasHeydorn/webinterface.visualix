@@ -1,49 +1,25 @@
 ﻿<div class="container">
-    <div class="row section">
+    <div class="row section" data-bind="if: movies().length > 0">
         <div class="col-md-12">
             <h1>Recent movies</h1>
             <ul class="movie-list-inline" data-bind="foreach: movies()">
-                <li class="image-container" data-bind="css: { watched: isWatched }">
+                <li class="image-container" data-bind="css: { watched: playcount > 0 }">
                     <a data-bind="click: $parent.openMovieDetails">
-                        <img data-bind="attr: { src: poster, alt: title }" alt="" src="#" />
+                        <img data-bind="attr: { src: 'image/' + escape(thumbnail), alt: title }" alt="" src="#" />
                         <div class="overlay-fluid" data-bind="html: title"></div>
                     </a>
                 </li>
             </ul>
         </div>
     </div>
-    <div class="row section">
+    <div class="row section" data-bind="if: episodes().length > 0">
         <div class="col-md-12">
             <h1>Recent episodes</h1>
-            <ul class="tvshow-list-inline">
-                <li class="image-container watched">
-                    <a href="#">
-                        <img src="images/posters/big_bang_theory_xlg.jpg" alt="1x01: Pilot" />
-                        <div class="overlay-fluid">1x01 &bull; Pilot</div>
-                    </a>
-                </li>
-                <li class="image-container">
-                    <a href="#">
-                        <img src="images/posters/big_bang_theory_xlg.jpg" alt="1x02: The Big Bran Hypothesis " />
-                        <div class="overlay-fluid">1x02 &bull; The Big Bran Hypothesis </div>
-                    </a>
-                </li>
-                <li class="image-container watched">
-                    <a href="#">
-                        <img src="images/posters/dexter_poster.jpg" alt="2x10: There's Something About Harry" />
-                        <div class="overlay-fluid">2x10 &bull; There's Something About Harry</div>
-                    </a>
-                </li>
-                <li class="image-container">
-                    <a href="#">
-                        <img src="images/posters/smallville.jpg" alt="6x12: Labyrinth" />
-                        <div class="overlay-fluid">6x12 &bull; Labyrinth</div>
-                    </a>
-                </li>
-                <li class="image-container watched">
-                    <a href="#">
-                        <img src="images/posters/tvdlx_justified_s1.jpg" alt="5x06: Shoot The Messenger" />
-                        <div class="overlay-fluid">5x06 &bull; Shoot The Messenger</div>
+            <ul class="tvshow-list-inline" data-bind="foreach: episodes()">
+                <li class="image-container" data-bind="css: { watched: playcount > 0 }">
+                    <a data-bind="click: $parent.openEpisodeDetails">
+                        <img data-bind="attr: { src: 'image/' + escape(thumbnail), alt: label }" alt="" src="#" />
+                        <div class="overlay-fluid" data-bind="html: label"></div>
                     </a>
                 </li>
             </ul>

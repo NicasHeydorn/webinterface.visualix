@@ -9,10 +9,11 @@
 
 define('jquery', function () { return jQuery; });
 define('knockout', ko);
+define('xbmc', xbmc);
 
 define(['durandal/system', 'durandal/app', 'durandal/viewLocator', 'plugins/dialog', 'plugins/router'], function (system, app, viewLocator, dialog, router) {
     //>>excludeStart("build", true);
-    system.debug(true);
+    system.debug(false);
     //>>excludeEnd("build");
 
     app.title = 'Visualix';
@@ -28,9 +29,10 @@ define(['durandal/system', 'durandal/app', 'durandal/viewLocator', 'plugins/dial
      */
     dialog.addContext('bootstrap', {
         navigateAfterCloseUrl: null,
-        
+        wrapperElement: '.content-wrapper',
+
         addHost: function (theDialog) {
-            var body = $('.content-wrapper');
+            var body = $(this.wrapperElement); // The element where the popus is created into.
             $('<div class="modal" id="myModal"></div>').appendTo(body);
             theDialog.host = $('#myModal').get(0);
         },

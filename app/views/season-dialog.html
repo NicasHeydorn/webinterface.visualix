@@ -1,0 +1,31 @@
+﻿<div class="modal-dialog" data-auto-close="true">
+    <div class="modal-content" data-bind="css: { watched: season.tvshow.details.isWatched }">
+        <div class="modal-body">
+            <h1>
+                <a class="back-button btn btn-sm" data-bind="click: backToTVShow"><i class="glyphicon glyphicon-arrow-left"></i> Back</a>
+                <span data-bind="html: season.tvshow.details.title"></span>
+                <small data-bind="html: season.season.label"></small>
+                <span class="watched-icon">
+                    <i class="glyphicon" data-bind="css: { 'glyphicon-eye-open': season.tvshow.details.isWatched, 'glyphicon-eye-close': !season.tvshow.details.isWatched }"></i>
+                </span>
+            </h1>
+            <div class="image">
+                <img data-bind="attr: { src: season.tvshow.details.art.fanart }" src="." alt="Fanart" />
+            </div>
+            <div class="content">
+                <p class="plot" data-bind="html: season.tvshow.plot"></p>
+                <div class="episodes-list" data-bind="foreach: season.episodes">
+                    <a data-bind="click: $parent.showEpisodeDetails, css: { watched: playcount > 0 }">
+                        <h2>
+                            <span data-bind="html: label"></span>
+                            <small data-bind="html: (Math.round(runtime / 60) + ' minutes')"></small>
+                        </h2>
+                        <span class="watched-icon">
+                            <i class="glyphicon" data-bind="css: { 'glyphicon-eye-open': playcount > 0, 'glyphicon-eye-close': playcount <= 0 }"></i>
+                        </span>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

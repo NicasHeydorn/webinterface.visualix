@@ -9,9 +9,9 @@
         activate: function () {
             router.map([
                 { hash: '', route: '', title: 'Home', content: '<i class="glyphicon glyphicon-home"></i> <span>Home</span>', moduleId: 'viewmodels/home', nav: true },
-                { hash: '#home', route: 'home(/:type/:id)', moduleId: 'viewmodels/home', nav: false },
+                { hash: '#home', title: 'Home', route: 'home(/:type/:id)', moduleId: 'viewmodels/home', nav: false },
                 { hash: '#movies', route: 'movies(/:movieid)', title: 'Movies', content: '<i class="glyphicon glyphicon-facetime-video"></i> <span>Movies</span>', moduleId: 'viewmodels/movies', nav: true },
-                { hash: '#tvshows', route: 'tvshows', title: 'TV Shows', content: '<i class="glyphicon glyphicon-film"></i> <span>TV Shows</span>', moduleId: 'viewmodels/tvshows', nav: true }
+                { hash: '#tvshows', route: 'tvshows(/:show)(/:season)(/:episode)', title: 'TV Shows', content: '<i class="glyphicon glyphicon-film"></i> <span>TV Shows</span>', moduleId: 'viewmodels/tvshows', nav: true }
             ]).buildNavigationModel();
 
             return router.activate();

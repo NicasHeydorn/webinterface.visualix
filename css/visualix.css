@@ -139,7 +139,6 @@ h1 {
 }
 .container {
   background-color: #ffffff;
-  min-width: 320px;
   width: auto;
 }
 .section {
@@ -262,6 +261,14 @@ h1 {
   padding: 36px 6px 6px;
   text-align: center;
 }
+.modal-dialog .modal-content .modal-body h1 .back-button {
+  position: absolute;
+  background-color: #EEE;
+  color: #000;
+  left: 10px;
+  padding: 2px 4px;
+  top: 8px;
+}
 .modal-dialog .modal-content .modal-body h1 .rating {
   position: absolute;
   left: 20px;
@@ -320,6 +327,102 @@ h1 {
 }
 .modal-dialog .modal-content .modal-body .content .info ul li {
   padding-left: 0;
+}
+.modal-dialog .modal-content .modal-body .content .seasons-list {
+  border-top: 4px solid #EEE;
+  padding: 20px;
+}
+.modal-dialog .modal-content .modal-body .content .seasons-list a {
+  border: 1px solid #EEE;
+  color: #000;
+  display: block;
+  height: 65px;
+  padding: 10px;
+  margin-bottom: 3px;
+  margin-right: 3px;
+  width: 100%;
+}
+.modal-dialog .modal-content .modal-body .content .seasons-list a:hover {
+  background-color: #F9F9F9;
+  cursor: pointer;
+  text-decoration: none;
+}
+.modal-dialog .modal-content .modal-body .content .seasons-list a.watched {
+  border: 3px #f0a30a solid;
+  position: relative;
+}
+.modal-dialog .modal-content .modal-body .content .seasons-list a.watched:before {
+  position: absolute;
+  display: block;
+  content: "\e013";
+  color: #FFF;
+  right: 0;
+  font-family: 'Glyphicons Halflings' !important;
+  font-size: 7pt;
+  font-weight: normal;
+  z-index: 102;
+  top: 0;
+}
+.modal-dialog .modal-content .modal-body .content .seasons-list a.watched:after {
+  position: absolute;
+  display: block;
+  border-top: 20px solid #f0a30a;
+  border-left: 20px solid rgba(0, 0, 0, 0);
+  right: 0;
+  content: "";
+  top: 0;
+  z-index: 101;
+}
+.modal-dialog .modal-content .modal-body .content .seasons-list h2 {
+  font-size: 1.3em;
+  margin-bottom: 4px;
+  margin-top: 0;
+}
+.modal-dialog .modal-content .modal-body .content .seasons-list:before,
+.modal-dialog .modal-content .modal-body .content .seasons-list:after {
+  content: "";
+  display: table;
+}
+.modal-dialog .modal-content .modal-body .content .seasons-list:after {
+  clear: both;
+}
+.modal-dialog .modal-content .modal-body .content .episodes-list {
+  border-top: 4px solid #EEE;
+}
+.modal-dialog .modal-content .modal-body .content .episodes-list a {
+  position: relative;
+  border-bottom: 1px solid #EEE;
+  border-left: 4px solid transparent;
+  display: block;
+  padding: 8px 10px;
+}
+.modal-dialog .modal-content .modal-body .content .episodes-list a h2 {
+  font-size: 1.3em;
+  margin: 0;
+}
+.modal-dialog .modal-content .modal-body .content .episodes-list a h2 small {
+  display: none;
+}
+.modal-dialog .modal-content .modal-body .content .episodes-list a .watched-icon {
+  position: absolute;
+  color: #ccc;
+  font-size: 1em;
+  right: 20px;
+  top: 10px;
+}
+.modal-dialog .modal-content .modal-body .content .episodes-list a .watched-icon .glyphicon-eye-open {
+  color: #f0a30a;
+}
+.modal-dialog .modal-content .modal-body .content .episodes-list a.watched {
+  border-left: 4px solid #f0a30a;
+}
+.modal-dialog .modal-content .modal-body .content .episodes-list a:hover {
+  background-color: #F9F9F9;
+  cursor: pointer;
+  text-decoration: none;
+}
+.modal-dialog .modal-content .modal-body .content .episodes-list a:last-child {
+  border-bottom: none;
 }
 .modal-backdrop {
   display: none !important;
@@ -405,11 +508,22 @@ h1 {
     width: auto;
   }
   .modal-dialog .modal-content {
-    border-top: 5px solid #f0a30a;
+    border-top: 5px solid #CCC;
   }
   .modal-dialog .modal-content .modal-body h1 {
     font-size: 1.8em;
     padding-top: 6px;
+  }
+  .modal-dialog .modal-content .modal-body h1 .back-button {
+    left: 20px;
+    padding: 5px 10px;
+  }
+  .modal-dialog .modal-content .modal-body .content .seasons-list a {
+    float: left;
+    width: 163px;
+  }
+  .modal-dialog .modal-content.watched {
+    border-top-color: #f0a30a;
   }
   .modal-backdrop {
     display: block !important;
@@ -436,6 +550,10 @@ h1 {
     top: 75px;
     width: 300px;
   }
+  .section {
+    padding-left: 10px;
+    padding-right: 10px;
+  }
   .section ul.movie-list-inline li.image-container img,
   .section ul.tvshow-list-inline li.image-container img {
     height: 220px;
@@ -461,7 +579,6 @@ h1 {
   }
   .modal-dialog .modal-content .modal-body .image {
     height: 200px;
-    margin-bottom: 20px;
   }
   .modal-dialog .modal-content .modal-body .image img {
     top: -40px;
@@ -476,6 +593,12 @@ h1 {
   .modal-dialog .modal-content .modal-body .content .info {
     padding: 10px 60px;
   }
+  .modal-dialog .modal-content .modal-body .content .seasons-list {
+    padding: 30px;
+  }
+  .modal-dialog .modal-content .modal-body .content .episodes-list a h2 small {
+    display: inline;
+  }
 }
 @media (min-width: 1200px) {
   .background {
@@ -488,9 +611,6 @@ h1 {
   }
   .container {
     background-color: rgba(255, 255, 255, 0.8);
-  }
-  .search-area {
-    height: 250px;
   }
   .search-area > .form {
     margin-left: -200px;

@@ -1,30 +1,29 @@
-﻿.postersize(@width) {
-    height: @width / 0.675;
-    width: @width;
-}
-
-.menuoffset(@numberOfItems, @itemwidth) {
+﻿.menuoffset(@numberOfItems, @itemwidth) {
     margin-left: (@numberOfItems * @itemwidth) / -2
 }
 
-@accentcolor:           #F0A30A;
-@backgroundcolor:       rgb(255, 255, 255);
-@posteroverlayheight:   38px;
-@posteroverlaypadding:  3px;
-@menuitemwidth:         50px;
-@posterheight:          150px;
-@posterwidth:           101px;
-@searchareaheight:      100px;
-@searchformwidth:       250px;
-@watchedbordersize:     3px;
+@accentcolor:               #F0A30A;
+@backgroundcolor:           rgb(255, 255, 255);
+@headermargin:              8px;
+@posteroverlayheight:       38px;
+@posteroverlaypadding:      3px;
+@menuitemwidth:             50px;
+@moviedialogimageheight:    150px;
+@moviedialogimageoffset:    40px;
+@posterheight:              150px;
+@posterwidth:               101px;
+@searchareaheight:          100px;
+@searchformwidth:           250px;
+@searchformoffset:          35px;
+@watchedbordersize:         3px;
 
-@segoeFontFamily:       'Segoe UI_', 'Open Sans', Verdana, Arial, Helvetica, sans-serif;
-@segoeLightFontFamily:  'Segoe UI Light_', 'Open Sans Light', Verdana, Arial, Helvetica, sans-serif;
-@segoeBoldFontFamily:   'Segoe UI Semibold_', 'Open Sans Bold', Verdana, Arial, Helvetica, sans-serif;
-@cambriaFontFamily:     'Cambria_', 'PT Serif Caption', Verdana, Arial, Helvetica, sans-serif;
-@sansFontFamily:        "Helvetica Neue", Helvetica, Arial, sans-serif;
-@serifFontFamily:       Georgia, "Times New Roman", Times, serif;
-@monoFontFamily:        'Courier New', monospace;
+@segoeFontFamily:           'Segoe UI_', 'Open Sans', Verdana, Arial, Helvetica, sans-serif;
+@segoeLightFontFamily:      'Segoe UI Light_', 'Open Sans Light', Verdana, Arial, Helvetica, sans-serif;
+@segoeBoldFontFamily:       'Segoe UI Semibold_', 'Open Sans Bold', Verdana, Arial, Helvetica, sans-serif;
+@cambriaFontFamily:         'Cambria_', 'PT Serif Caption', Verdana, Arial, Helvetica, sans-serif;
+@sansFontFamily:            "Helvetica Neue", Helvetica, Arial, sans-serif;
+@serifFontFamily:           Georgia, "Times New Roman", Times, serif;
+@monoFontFamily:            'Courier New', monospace;
 
 // Font is used to replace Cambria Font
 @font-face {
@@ -112,7 +111,7 @@
 }
 
 h1 {
-    margin-top: 8px;
+    margin-top: @headermargin;
 }
 
 .form-control {
@@ -150,7 +149,7 @@ h1 {
         position: relative;
         text-align: center;
         left: 50%;
-        top: 35px;
+        top: @searchformoffset;
         margin-left: @searchformwidth / -2;
         width: @searchformwidth;
 
@@ -204,7 +203,6 @@ h1 {
 
 .container {
     background-color: @backgroundcolor;
-    min-width: 320px;
     width: auto;
 }
 
@@ -304,9 +302,6 @@ h1 {
     }
 }
 
-@moviedialogimageheight: 150px;
-@moviedialogimageoffset: 40px;
-
 .modal-dialog {
     margin: 0;
 
@@ -332,6 +327,15 @@ h1 {
                 margin: 0;
                 padding: 36px 6px 6px;
                 text-align: center;
+
+                .back-button {
+                    position: absolute;
+                    background-color: #EEE;
+                    color: #000;
+                    left: 10px;
+                    padding: 2px 4px;
+                    top: 8px;
+                }
 
                 .rating {
                     position: absolute;
@@ -404,6 +408,122 @@ h1 {
                         }
                     }
                 }
+
+                .seasons-list {
+                    border-top: 4px solid #EEE;
+                    padding: 20px;
+
+                    @seasonitemheight: 65px;
+
+                    a {
+                        border: 1px solid #EEE;
+                        color: #000;
+                        display: block;
+                        height: @seasonitemheight;
+                        padding: 10px;
+                        margin-bottom: 3px;
+                        margin-right: 3px;
+                        width: 100%;
+
+                        &:hover {
+                            background-color: #F9F9F9;
+                            cursor: pointer;
+                            text-decoration: none;
+                        }
+
+                        &.watched {
+                            border: @watchedbordersize @accentcolor solid;
+                            position: relative;
+
+                            &:before {
+                                position: absolute;
+                                display: block;
+                                content: "\e013";
+                                color: #FFF;
+                                right: 0;
+                                font-family: 'Glyphicons Halflings' !important;
+                                font-size: 7pt;
+                                font-weight: normal;
+                                z-index: 102;
+                                top: 0;
+                            }
+
+                            &:after {
+                                position: absolute;
+                                display: block;
+                                border-top: 20px solid @accentcolor;
+                                border-left: 20px solid rgba(0, 0, 0, 0);
+                                right: 0;
+                                content: "";
+                                top: 0;
+                                z-index: 101;
+                            }
+                        }
+                    }
+
+                    h2 {
+                        font-size: 1.3em;
+                        margin-bottom: 4px;
+                        margin-top: 0;
+                    }
+
+                    &:before,
+                    &:after {
+                        content: "";
+                        display: table;
+                    }
+
+                    &:after {
+                        clear: both;
+                    }
+                }
+
+                .episodes-list {
+                    border-top: 4px solid #EEE;
+
+                    a {
+                        position: relative;
+                        border-bottom: 1px solid #EEE;
+                        border-left: 4px solid transparent;
+                        display: block;
+                        padding: 8px 10px;
+
+                        h2 {
+                            font-size: 1.3em;
+                            margin: 0;
+
+                            small {
+                                display: none;
+                            }
+                        }
+
+                        .watched-icon {
+                            position: absolute;
+                            color: #ccc;
+                            font-size: 1em;
+                            right: 20px;
+                            top: 10px;
+
+                            .glyphicon-eye-open {
+                                color: @accentcolor;
+                            }
+                        }
+
+                        &.watched {
+                            border-left: 4px solid @accentcolor;
+                        }
+
+                        &:hover {
+                            background-color: #F9F9F9;
+                            cursor: pointer;
+                            text-decoration: none;
+                        }
+
+                        &:last-child {
+                            border-bottom: none;
+                        }
+                    }
+                }
             }
         }
     }
@@ -424,12 +544,14 @@ h1 {
 }
 
 @media (min-width: 768px) {
+    @menuitemwidth:         125px;
     @posterheight:          200px;
     @posterwidth:           134px;
     @posteroverlayheight:   53px;
     @posteroverlaypadding:  6px;
     @searchareaheight:      200px;
     @searchformwidth:       300px;
+    @searchformoffset:      50px;
     @watchedbordersize:     4px;
 
     .background {
@@ -441,7 +563,7 @@ h1 {
 
         > .form {
             margin-left: @searchformwidth / -2;
-            top: 50px;
+            top: @searchformoffset;
             width: @searchformwidth;
 
             h1 {
@@ -452,7 +574,6 @@ h1 {
     }
 
     .navbar {
-        @menuitemwidth: 125px;
 
         > ul {
             .menuoffset(3, @menuitemwidth);
@@ -526,13 +647,31 @@ h1 {
         width: auto;
 
         .modal-content {
-            border-top: 5px solid @accentcolor;
+            border-top: 5px solid #CCC;
 
             .modal-body {
                 h1 {
                     font-size: 1.8em;
                     padding-top: 6px;
+
+                    .back-button {
+                        left: 20px;
+                        padding: 5px 10px;
+                    }
                 }
+
+                .content {
+                    .seasons-list {
+                        a {
+                            float: left;
+                            width: 163px;
+                        }
+                    }
+                }
+            }
+
+            &.watched {
+                border-top-color: @accentcolor;
             }
         }
     }
@@ -554,16 +693,17 @@ h1 {
 }
 
 @media (min-width: 992px) {
-    @searchareaheight: 250px;
-    @searchformwidth: 300px;
-    @moviedialogwidth: 892px;
-    @moviedialogimageheight: 200px;
-    @moviedialogimageoffset: 40px;
-    @posteroverlayheight:   53px;
-    @posteroverlaypadding:  6px;
-    @posterheight: 220px;
-    @posterwidth: 150px;
-    @watchedbordersize: 4px;
+    @searchareaheight:          250px;
+    @searchformwidth:           300px;
+    @moviedialogwidth:          892px;
+    @moviedialogimageheight:    200px;
+    @moviedialogimageoffset:    40px;
+    @posteroverlayheight:       53px;
+    @posteroverlaypadding:      6px;
+    @posterheight:              220px;
+    @posterwidth:               150px;
+    @searchformoffset:          75px;
+    @watchedbordersize:         4px;
 
     .background {
         height: @searchareaheight + 10;
@@ -574,12 +714,15 @@ h1 {
 
         > .form {
             margin-left: @searchformwidth / -2;
-            top: 75px;
+            top: @searchformoffset;
             width: @searchformwidth;
         }
     }
 
     .section {
+        padding-left: 10px;
+        padding-right: 10px;
+
         ul {
             &.movie-list-inline,
             &.tvshow-list-inline {
@@ -616,7 +759,6 @@ h1 {
 
                 .image {
                     height: @moviedialogimageheight;
-                    margin-bottom: 20px;
 
                     img {
                         top: @moviedialogimageoffset * -1;
@@ -635,6 +777,20 @@ h1 {
                     .info {
                         padding: 10px 60px;
                     }
+
+                    .seasons-list {
+                        padding: 30px;
+                    }
+
+                    .episodes-list {
+                        a {
+                            h2 {
+                                small {
+                                    display: inline;
+                                }
+                            }
+                        }
+                    }
                 }
             }
         }
@@ -642,6 +798,9 @@ h1 {
 }
 
 @media (min-width: 1200px) {
+    @searchformwidth:   400px;
+    @searchformoffset:  65px;
+
     .background {
         position: fixed;
         -moz-background-size: cover;
@@ -655,14 +814,10 @@ h1 {
         background-color: fade(@backgroundcolor, 80%);
     }
 
-    @searchformwidth: 400px;
-
     .search-area {
-        height: 250px;
-
         > .form {
             margin-left: @searchformwidth / -2;
-            top: 65px;
+            top: @searchformoffset;
             width: @searchformwidth;
 
             h1 {

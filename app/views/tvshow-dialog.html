@@ -1,0 +1,28 @@
+﻿<div class="modal-dialog" data-auto-close="true">
+    <div class="modal-content" data-bind="css: { watched: tvshow.details.isWatched } ">
+        <div class="modal-body">
+            <h1>
+                <span class="rating">
+                    <i class="glyphicon glyphicon-star"></i><i class="glyphicon glyphicon-star"></i><i class="glyphicon glyphicon-star"></i><i class="glyphicon glyphicon-star"></i><i class="glyphicon glyphicon-star-empty"></i>
+                </span>
+                <span data-bind="html: tvshow.details.title"></span>
+                <small data-bind="html: '(' + tvshow.details.episode + ' episodes)'"></small>
+                <span class="watched-icon">
+                    <i class="glyphicon" data-bind="css: { 'glyphicon-eye-open': tvshow.details.isWatched, 'glyphicon-eye-close': !tvshow.details.isWatched }"></i>
+                </span>
+            </h1>
+            <div class="image">
+                <img data-bind="attr: { src: tvshow.details.art.fanart }" src="." alt="Fanart" />
+            </div>
+            <div class="content">
+                <p class="plot" data-bind="html: tvshow.details.plot"></p>
+                <div class="seasons-list" data-bind="foreach: tvshow.seasons">
+                    <a data-bind="click: $parent.showSeasonDetails, css: { watched: watchedepisodes > 0 && watchedepisodes >= episode }">
+                        <h2 data-bind="html: label"></h2>
+                        <span><i class="glyphicon glyphicon-eye-open"></i> <!-- ko text: watchedepisodes + ' of ' + episode + ' epsiodes' --><!-- /ko --></span>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

@@ -9,7 +9,7 @@
         request: function(options) {
             var requestOptions = $.extend({}, this.defaultOptions, options);
 
-            requestOptions.url = 'jsonrpc?' + options.method;
+            requestOptions.url = '/jsonrpc?' + options.method;
             requestOptions.data = JSON.stringify({
                 jsonrpc: '2.0',
                 method: options.method,
@@ -22,7 +22,7 @@
         getRequestOptions: function (options) {
             var requestOptions = $.extend({}, this.defaultOptions, options);
 
-            requestOptions.url = 'jsonrpc?' + requestOptions.method;
+            requestOptions.url = '/jsonrpc?' + requestOptions.method;
             requestOptions.data = JSON.stringify({
                 jsonrpc: '2.0',
                 method: requestOptions.method,

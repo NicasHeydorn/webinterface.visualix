@@ -109,8 +109,8 @@
                         'thumbnail'
                     ],
                     'sort': {
-                        'method': 'sorttitle',
-                        'ignorearticle': true
+                        'method': 'dateadded',
+                        'order': 'descending'
                     }
                 }
             };
@@ -168,8 +168,8 @@
                         'art'
                     ],
                     'sort': {
-                        'method': 'sorttitle',
-                        'ignorearticle': true
+                        'method': 'dateadded',
+                        'order': 'descending'
                     }
                 }
             };

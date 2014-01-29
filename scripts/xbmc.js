@@ -239,7 +239,10 @@
                         'watchedepisodes',
                         'season',
                         'showtitle'
-                    ]
+                    ],
+                    'sort': {
+                        method: 'season'
+                    }
                 }
             };
         },

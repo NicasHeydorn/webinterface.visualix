@@ -544,6 +544,9 @@ h1 {
   .modal-open {
     overflow: hidden;
   }
+  .modal-open .container {
+    display: block;
+  }
 }
 @media (min-width: 992px) {
   .background {

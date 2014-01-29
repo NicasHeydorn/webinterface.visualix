@@ -1,30 +1,102 @@
-﻿define(['plugins/router'], function (router) {
-    var TVShowDialog = function() {
+﻿define(['xbmc', 'knockout', 'plugins/router'], function (xbmc, ko, router) {
+    var TVShowDialog = function () {
+        this.tvshow = ko.observable({
+            art: {},
+            cast: [],
+            director: [],
+            writer: [],
+            genre: [],
+            seasons: []
+        });
+        this.backToSeason = function () {
+        };
     };
 
     TVShowDialog.prototype.selectOption = function (dialogResult) {
         dialog.close(this, dialogResult);
     };
 
-    TVShowDialog.prototype.activate = function (tvshow) {
+    TVShowDialog.prototype.activate = function (data) {
+        /*
+         * Make sure the tvshowid is received as integer.
+         */
+        if (typeof data.tvshowid === 'string')
+            data.tvshowid = parseInt(data.tvshowid);
+
+        /*
+         * Bind functions to the model functions
+         */
         this.showSeasonDetails = function (season) {
-            router.navigate('#tvshows/' + tvshow.details.tvshowid + '/' + season.season);
+            router.navigate('#tvshows/' + data.tvshowid + '/' + season.season);
         };
 
-        tvshow.details.isWatched = (function() {
-            var watched = true;
-            for (var i = 0; i < tvshow.seasons.length; i++) {
-                var current = tvshow.seasons[i];
+        /*
+         * If the current tvshow exists in the collection of previously fetched tvshows:
+         *      - Load the tvshow from the 'cache'
+         * Else:
+         *      - Get the tvshow details from the server
+         *
+         * Then:
+         *      - Open the dialog
+         */
+        var model = this;
 
-                if (current.watchedepisodes < current.episode) {
-                    watched = false;
-                    break;
+        if (xbmc.cache.tvshows[data.tvshowid]) {
+            var tvshow = xbmc.cache.tvshows[data.tvshowid];
+            
+            tvshow.isWatched = (function () {
+                var watched = true;
+                for (var i = 0; i < model.tvshow().seasons.length; i++) {
+                    var current = model.tvshow().seasons[i];
+
+                    if (current.watchedepisodes < current.episode) {
+                        watched = false;
+                        break;
+                    }
                 }
-            }
-            return watched;
-        })();
-        
-        this.tvshow = tvshow;
+                return watched;
+            })();
+            
+            model.showSeasonDetails = function (season) {
+                router.navigate('#tvshows/' + data.tvshowid + '/' + season.season);
+            };
+
+            model.tvshow(tvshow);
+        } else {
+            var tvshowDetailsRequest = xbmc.getRequestOptions(xbmc.options.tvshowDetails(data.tvshowid)); // Get the default request options.
+
+            $.when($.ajax(tvshowDetailsRequest)).then(function (tvshowDetailsResponse) {
+                var tvshowdetails = tvshowDetailsResponse.result.tvshowdetails;
+                
+                var seasonDetailsRequest = xbmc.getRequestOptions(xbmc.options.seasonDetails(data.tvshowid)); // Get the default request options.
+
+                $.when($.ajax(seasonDetailsRequest)).then(function (seasonDetailsResponse) {
+                    tvshowdetails.seasons = seasonDetailsResponse.result.seasons; // Add the season data to the tvshow info.
+
+                    /*
+                     * Add additional functions to the model.
+                     */
+                    tvshowdetails.isWatched = (function() {
+                        var watched = true;
+                        for (var i = 0; i < model.tvshow().seasons.length; i++) {
+                            var current = model.tvshow().seasons[i];
+
+                            if (current.watchedepisodes < current.episode) {
+                                watched = false;
+                                break;
+                            }
+                        }
+                        return watched;
+                    })();
+
+                    /*
+                     * Bind the received data to the model.
+                     */
+                    model.tvshow(tvshowdetails); // Set the details in the model.
+                    xbmc.cache.tvshows[data.tvshowid] = tvshowdetails; // Save the retrieved data to the cache.
+                });
+            });
+        }
     };
 
     return TVShowDialog;

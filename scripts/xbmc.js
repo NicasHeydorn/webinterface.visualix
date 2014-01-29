@@ -34,6 +34,13 @@
         }
     };
 
+    xbmc.cache = {
+        movies: {},
+        tvshows: {},
+        seasons: {},
+        episodes: {}
+    };
+
     xbmc.options = {
         allMovies: function() {
             return {
@@ -49,6 +56,29 @@
                         'lastplayed',
                         'runtime',
                         'playcount',
+                        'rating',
+                        'thumbnail'
+                    ],
+                    'sort': {
+                        'method': 'sorttitle',
+                        'ignorearticle': true
+                    }
+                }
+            };
+        },
+
+        allTVShows: function () {
+            return {
+                'context': this,
+                'method': 'VideoLibrary.GetTVShows',
+                'params': {
+                    'limits': {
+                        'start': 0
+                    },
+                    'properties': [
+                        'title',
+                        'episode',
+                        'watchedepisodes',
                         'rating',
                         'thumbnail'
                     ],
@@ -207,7 +237,8 @@
                         'episode',
                         'tvshowid',
                         'watchedepisodes',
-                        'season'
+                        'season',
+                        'showtitle'
                     ]
                 }
             };

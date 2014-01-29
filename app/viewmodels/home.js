@@ -6,6 +6,7 @@
     var fetchedEpisodes = {}; // Stores retrieved episodes so that request only has to happen once per episode.
     
     var model = {
+        isdefault: true,
         currentid: ko.observable(null),
         movies: ko.observableArray(),
         episodes: ko.observableArray(),
@@ -58,71 +59,17 @@
 
             if (type === 'movie') {
                 infoDialog = new movieDialog();
-                window.currentInfoDialog = infoDialog;
-                /*
-                 * If the current movie exists in the collection of previously fetched movies:
-                 *      - Load the movie from the 'cache'
-                 * Else:
-                 *      - Get the movie details from the server
-                 *
-                 * Then:
-                 *      - Open the dialog
-                 */
-                if (fetchedMovies[id]) {
-                    objectToShow = fetchedMovies[id];
-
-                    if ($(dialogContext.wrapperElement).length > 0) {
-                        dialog.show(infoDialog, objectToShow, 'bootstrap');
-                        infoDialog = objectToShow = null;
-                    }
-                } else {
-                    var movieDetailsRequest = xbmc.getRequestOptions(xbmc.options.movieDetails(parseInt(id))); // Get the default request options.
-
-                    $.when($.ajax(movieDetailsRequest)).then(function (movieDetailsResponse) {
-                        objectToShow = movieDetailsResponse.result.moviedetails;
-                        fetchedMovies[id] = objectToShow;
-
-                        if ($(dialogContext.wrapperElement).length > 0) { // When refreshing a page, this will be false. Fallback in this.bindingComplete.
-                            dialog.show(infoDialog, objectToShow, 'bootstrap');
-                            infoDialog = objectToShow = null;
-                        }
-                    });
-                }
-                
+                objectToShow = { movieid: id };
             } else if (type === 'episode') {
                 infoDialog = new episodeDialog();
-                window.currentInfoDialog = infoDialog;
-                /*
-                 * If the current episode exists in the collection of previously fetched episodes:
-                 *      - Load the episode from the 'cache'
-                 * Else:
-                 *      - Get the episode details from the server
-                 *
-                 * Then:
-                 *      - Open the dialog
-                 */
-                if (fetchedEpisodes[id]) {
-                    objectToShow = fetchedEpisodes[id];
+                objectToShow = { episodeid: id };
+            }
 
-                    if ($(dialogContext.wrapperElement).length > 0) {
-                        dialog.show(infoDialog, objectToShow, 'bootstrap');
-                        infoDialog = objectToShow = null;
-                    }
-                } else {
-                    var episodeDetailsRequest = xbmc.getRequestOptions(xbmc.options.episodeDetails(parseInt(id))); // Get the default request options.
-
-                    $.when($.ajax(episodeDetailsRequest)).then(function (episodeDetailsResponse) {
-                        console.log("BOOOOEEEEE");
-                        console.log(episodeDetailsResponse);
-                        objectToShow = episodeDetailsResponse.result.episodedetails;
-                        fetchedEpisodes[id] = objectToShow;
-
-                        if ($(dialogContext.wrapperElement).length > 0) { // When refreshing a page, this will be false. Fallback in this.bindingComplete.
-                            dialog.show(infoDialog, objectToShow, 'bootstrap');
-                            infoDialog = objectToShow = null;
-                        }
-                    });
-                }
+            window.currentInfoDialog = infoDialog;
+            
+            if ($(dialogContext.wrapperElement).length > 0) {
+                dialog.show(infoDialog, objectToShow, 'bootstrap');
+                infoDialog = objectToShow = null;
             }
         }
     };
@@ -131,7 +78,6 @@
      * Get recently added movies and add them to the model.
      */
     var recentMoviesRequest = xbmc.getRequestOptions(xbmc.options.recentMovies()); // Get the default request options.
-    console.log(recentMoviesRequest);
 
     $.when($.ajax(recentMoviesRequest)).then(function (recentMoviesResult) {
         ko.utils.arrayPushAll(model.movies, recentMoviesResult.result.movies);

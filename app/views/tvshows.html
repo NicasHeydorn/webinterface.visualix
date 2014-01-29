@@ -3,9 +3,9 @@
         <div class="col-md-12">
             <h1>TV Shows</h1>
             <ul class="movie-list-inline" data-bind="foreach: tvshows()">
-                <li class="image-container" data-bind="css: { watched: isWatched }">
+                <li class="image-container" data-bind="css: { watched: watchedepisodes >= episode }">
                     <a data-bind="click: $parent.openTvShowDetails">
-                        <img data-bind="attr: { src: poster, alt: title }" alt="" src="#" />
+                        <img data-bind="attr: { src: thumbnail, alt: title }" alt="" src="#" />
                         <div class="overlay-fluid" data-bind="html: title"></div>
                     </a>
                 </li>

@@ -5,7 +5,7 @@
             <ul class="movie-list-inline" data-bind="foreach: movies()">
                 <li class="image-container" data-bind="css: { watched: playcount > 0 }">
                     <a data-bind="click: $parent.openDetails">
-                        <img data-bind="attr: { src: 'image/' + escape(thumbnail), alt: title }" alt="" src="#" />
+                        <img data-bind="attr: { src: '/image/' + escape(thumbnail), alt: title }" alt="" src="#" />
                         <div class="overlay-fluid" data-bind="html: title"></div>
                     </a>
                 </li>

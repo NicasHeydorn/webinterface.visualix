@@ -78,6 +78,8 @@
 
     $.when($.ajax(recentMoviesRequest)).then(function (recentMoviesResult) {
         ko.utils.arrayPushAll(model.movies, recentMoviesResult.result.movies);
+
+        xbmc.cache.recentmovies = recentMoviesResult.result.movies;
     });
 
     /*
@@ -87,6 +89,8 @@
 
     $.when($.ajax(recentEpisodesRequest)).then(function (recentEpisodesResult) {
         ko.utils.arrayPushAll(model.episodes, recentEpisodesResult.result.episodes);
+
+        xbmc.cache.recentepisodes = recentEpisodesResult.result.episodes;
     });
 
     return model;

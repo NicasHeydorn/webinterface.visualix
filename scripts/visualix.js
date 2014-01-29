@@ -2,23 +2,32 @@
     var visualix = {};
 
     visualix.initCarousel = function() {
-        var images = ['images/27-wallpapers-suits-tv-series.jpg', 'images/the-hangover-4fe2074315423.jpg', 'images/dexter-classic-poster.jpg', 'images/fe8015b5e69d0b482d761c83e700aa75_large.jpg'];
         var $background = $('.background');
 
-        var changeBackground = function(fadeDelay, previousIndex) {
+        var changeBackground = function (fadeDelay, previousIndex) {
+            var data = $.merge([], xbmc.cache.recentepisodes);
+            data = $.merge(data, xbmc.cache.recentmovies);
+            data = $.merge(data, xbmc.cache.allmovies);
+            console.log(data);
+
             var index = previousIndex;
             while (index === previousIndex) {
-                index = Math.floor((Math.random() * (images.length)));
+                index = Math.floor((Math.random() * (data.length)));
             }
 
-            $background.fadeOut(fadeDelay, function() {
-                $background.css({ 'background-image': 'url(' + images[index] + ')' });
+            $background.fadeOut(fadeDelay, function () {
+                var image = '';
+                if (data[index].art.fanart)
+                    image = data[index].art.fanart;
+                else if (data[index].art['tvshow.fanart'])
+                    image = data[index].art['tvshow.fanart'];
+                $background.css({ 'background-image': 'url(/image/' + escape(image) + ')' });
                 $background.fadeIn(fadeDelay);
             });
 
             window.setTimeout(function() {
-                changeBackground(500, index);
-            }, 7000);
+                changeBackground(1000, index);
+            }, 10000);
         };
 
         changeBackground(0, -1);

@@ -65,6 +65,8 @@
 
     $.when($.ajax(allMoviesRequest)).then(function (allMoviesResult) {
         ko.utils.arrayPushAll(model.movies, allMoviesResult.result.movies);
+
+        xbmc.cache.allmovies = allMoviesResult.result.movies;
     });
 
     return model;

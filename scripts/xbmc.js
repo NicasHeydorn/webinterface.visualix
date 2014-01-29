@@ -35,6 +35,9 @@
     };
 
     xbmc.cache = {
+        recentmovies: {},
+        recentepisodes: {},
+        allmovies: {},
         movies: {},
         tvshows: {},
         seasons: {},
@@ -57,7 +60,8 @@
                         'runtime',
                         'playcount',
                         'rating',
-                        'thumbnail'
+                        'thumbnail',
+                        'art'
                     ],
                     'sort': {
                         'method': 'sorttitle',
@@ -106,7 +110,8 @@
                         'runtime',
                         'playcount',
                         'rating',
-                        'thumbnail'
+                        'thumbnail',
+                        'art'
                     ],
                     'sort': {
                         'method': 'dateadded',

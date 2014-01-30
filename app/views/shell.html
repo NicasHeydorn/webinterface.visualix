@@ -6,9 +6,9 @@
             <div class="form">
                 <h1>Find a movie or tv show</h1>
                 <div class="input-group">
-                    <input type="text" class="form-control" placeholder="Search Movies & TV Shows">
+                    <input type="text" class="form-control" placeholder="Search Movies & TV Shows" data-bind="change:">
                     <span class="input-group-btn">
-                        <button class="btn btn-default" type="button"><i class="glyphicon glyphicon-search"></i></button>
+                        <button class="btn btn-default" type="button" data-bind="click: searchForMovie"><i class="glyphicon glyphicon-search"></i></button>
                     </span>
                 </div>
             </div>

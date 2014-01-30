@@ -7,6 +7,11 @@
             writer: [],
             genre: []
         });
+        this.playMovie = function () {
+            var playMovieRequest = xbmc.getRequestOptions(xbmc.options.playFile(this.movie().file)); // Get the default request options.
+
+            $.ajax(playMovieRequest);
+        };
     };
 
     MovieDialog.prototype.selectOption = function(dialogResult) {

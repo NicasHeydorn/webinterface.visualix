@@ -18,6 +18,9 @@
         },
         attached: function() {
             visualix.initCarousel();
+        },
+        searchForMovie: function() {
+            console.log(xbmc.cache.searchdata);
         }
     };
 });

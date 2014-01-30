@@ -363,6 +363,7 @@ h1 {
 
                 img {
                     position: absolute;
+                    clip: rect(0, 767px, @moviedialogimageheight, 0);
                     width: 100%;
                 }
             }
@@ -665,6 +666,13 @@ h1 {
                     .back-button {
                         left: 20px;
                         padding: 5px 10px;
+                    }
+                }
+
+                .image {
+                    img {
+                        top: @moviedialogimageoffset * -1;
+                        clip: rect(@moviedialogimageoffset, 951px, @moviedialogimageheight + @moviedialogimageoffset, 0);
                     }
                 }
 

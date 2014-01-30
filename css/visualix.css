@@ -291,6 +291,7 @@ h1 {
 }
 .modal-dialog .modal-content .modal-body .image img {
   position: absolute;
+  clip: rect(0, 767px, 150px, 0);
   width: 100%;
 }
 .modal-dialog .modal-content .modal-body .content {
@@ -523,6 +524,10 @@ h1 {
   .modal-dialog .modal-content .modal-body h1 .back-button {
     left: 20px;
     padding: 5px 10px;
+  }
+  .modal-dialog .modal-content .modal-body .image img {
+    top: -40px;
+    clip: rect(40px, 951px, 190px, 0);
   }
   .modal-dialog .modal-content .modal-body .content .seasons-list a {
     float: left;

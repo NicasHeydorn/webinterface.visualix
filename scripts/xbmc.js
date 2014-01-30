@@ -4,7 +4,9 @@
             contentType: 'application/json',
             dataType: 'json',
             type: 'POST',
-            success: function (data) { console.log(data); }
+            success: function(data) {
+                /*console.log(data);*/ // Enable to always show xbmc request output in console.
+            }
         },
         request: function(options) {
             var requestOptions = $.extend({}, this.defaultOptions, options);
@@ -19,7 +21,7 @@
 
             return $.ajax(requestOptions);
         },
-        getRequestOptions: function (options) {
+        getRequestOptions: function(options) {
             var requestOptions = $.extend({}, this.defaultOptions, options);
 
             requestOptions.url = '/jsonrpc?' + requestOptions.method;
@@ -41,7 +43,8 @@
         movies: {},
         tvshows: {},
         seasons: {},
-        episodes: {}
+        episodes: {},
+        searchdata: []
     };
 
     xbmc.options = {
@@ -71,7 +74,7 @@
             };
         },
 
-        allTVShows: function () {
+        allTVShows: function() {
             return {
                 'context': this,
                 'method': 'VideoLibrary.GetTVShows',
@@ -94,7 +97,7 @@
             };
         },
 
-        recentMovies: function () {
+        recentMovies: function() {
             return {
                 'context': this,
                 'method': 'VideoLibrary.GetRecentlyAddedMovies',
@@ -153,7 +156,7 @@
             };
         },
 
-        recentEpisodes: function () {
+        recentEpisodes: function() {
             return {
                 'context': this,
                 'method': 'VideoLibrary.GetRecentlyAddedEpisodes',
@@ -180,7 +183,7 @@
             };
         },
 
-        episodeDetails: function (episodeid) {
+        episodeDetails: function(episodeid) {
             return {
                 'context': this,
                 'method': 'VideoLibrary.GetEpisodeDetails',
@@ -205,8 +208,8 @@
                 }
             };
         },
-        
-        seasonEpisodesDetails: function (tvshowid, seasonid) {
+
+        seasonEpisodesDetails: function(tvshowid, seasonid) {
             return {
                 'context': this,
                 'method': 'VideoLibrary.GetEpisodes',
@@ -233,7 +236,7 @@
             };
         },
 
-        seasonDetails: function (tvshowid) {
+        seasonDetails: function(tvshowid) {
             return {
                 'context': this,
                 'method': 'VideoLibrary.GetSeasons',
@@ -252,8 +255,8 @@
                 }
             };
         },
-        
-        tvshowDetails: function (tvshowid) {
+
+        tvshowDetails: function(tvshowid) {
             return {
                 'context': this,
                 'method': 'VideoLibrary.GetTVShowDetails',
@@ -271,7 +274,59 @@
                     ]
                 }
             };
-        }
+        },
+
+        playFile: function(file) {
+            return {
+                'context': this,
+                'method': 'Player.Open',
+                'params': {
+                    'item': {
+                        'file': file
+                    }
+                }
+            };
+        },
+
+        moviesForSearch: function () {
+            return {
+                'context': this,
+                'method': 'VideoLibrary.GetMovies',
+                'params': {
+                    'limits': {
+                        'start': 0
+                    },
+                    'properties': [
+                        'title'
+                    ],
+                    'sort': {
+                        'method': 'sorttitle',
+                        'ignorearticle': true
+                    }
+                }
+            };
+        },
+
+        episodesForSearch: function () {
+            return {
+                'context': this,
+                'method': 'VideoLibrary.GetEpisodes',
+                'params': {
+                    'limits': {
+                        'start': 0
+                    },
+                    'properties': [
+                        'showtitle',
+                        'season',
+                        'tvshowid'
+                    ],
+                    'sort': {
+                        'method': 'sorttitle',
+                        'ignorearticle': true
+                    }
+                }
+            };
+        },
     };
 
     window.xbmc = xbmc;

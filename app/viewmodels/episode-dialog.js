@@ -7,7 +7,13 @@
             director: [],
             genre: []
         });
-        this.backToSeason = function() {
+        this.backToSeason = function () {
+            router.navigate('#tvshows/' + this.episode().tvshowid + '/' + this.episode().season);
+        };
+        this.playEpisode = function () {
+            var playEpisodeRequest = xbmc.getRequestOptions(xbmc.options.playFile(this.episode().file)); // Get the default request options.
+
+            $.ajax(playEpisodeRequest);
         };
     };
 
@@ -34,7 +40,8 @@
         var model = this;
 
         if (xbmc.cache.episodes[data.episodeid]) {
-            model.episode(xbmc.cache.episodes[data.episodeid]);
+            var episode = xbmc.cache.episodes[data.episodeid];
+            model.episode(episode);
         } else {
             var episodeDetailsRequest = xbmc.getRequestOptions(xbmc.options.episodeDetails(data.episodeid)); // Get the default request options.
 
@@ -42,26 +49,17 @@
                 var episodedetails = episodeDetailsResponse.result.episodedetails;
                 
                 /*
-                 * Hide the 'back' button when the episode is loaded from the homepage.
-                 */
-                if (router.activeItem().isdefault) {
-                    episodedetails.tvshowid = null;
-                }
-
-                /*
-                 * Add additional functions to the model.
-                 */
-                model.backToSeason = function () {
-                    router.navigate('#tvshows/' + episodedetails.tvshowid + '/' + episodedetails.season);
-                };
-
-                /*
                  * Bind the received data to the model.
                  */
                 model.episode(episodedetails); // Set the details in the model.
                 xbmc.cache.episodes[data.episodeid] = episodedetails; // Save the retrieved data to the cache.
             });
         }
+
+        /*
+         * Hide the 'back' button when the episode is loaded from the homepage.
+         */
+        model.hidebackbutton = router.activeItem().isdefault;
     };
 
     return EpisodeDialog;

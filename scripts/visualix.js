@@ -8,7 +8,6 @@
             var data = $.merge([], xbmc.cache.recentepisodes);
             data = $.merge(data, xbmc.cache.recentmovies);
             data = $.merge(data, xbmc.cache.allmovies);
-            console.log(data);
 
             var index = previousIndex;
             while (index === previousIndex) {

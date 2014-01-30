@@ -2,7 +2,7 @@
     <div class="modal-content">
         <div class="modal-body">
             <h1>
-                <a class="back-button btn btn-sm" data-bind="visible: episode().tvshowid, click: backToSeason"><i class="glyphicon glyphicon-arrow-left"></i> <!-- ko text: 'Season ' + episode().season --><!-- /ko --></a>
+                <a class="back-button btn btn-sm" data-bind="visible: !hidebackbutton, click: backToSeason"><i class="glyphicon glyphicon-arrow-left"></i> <!-- ko text: 'Season ' + episode().season --><!-- /ko --></a>
                 <span data-bind="html: episode().label"></span>
                 <small data-bind="html: '(' + episode().firstaired + ')'"></small>
                 <span class="watched-icon">
@@ -15,7 +15,7 @@
             <div class="content">
                 <p class="plot" data-bind="html: episode().plot"></p>
                 <div class="buttons">
-                    <a class="btn btn-lg"><i class="glyphicon glyphicon-play-circle"></i> Play episode</a>
+                    <a class="btn btn-lg" data-bind="click: playEpisode"><i class="glyphicon glyphicon-play-circle"></i> Play episode</a>
                 </div>
                 <div class="row info">
                     <div class="col-md-4 col-sm-6">

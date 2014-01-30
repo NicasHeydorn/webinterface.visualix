@@ -16,13 +16,15 @@
             }
 
             $background.fadeOut(fadeDelay, function () {
-                var image = '';
-                if (data[index].art.fanart)
-                    image = data[index].art.fanart;
-                else if (data[index].art['tvshow.fanart'])
-                    image = data[index].art['tvshow.fanart'];
-                $background.css({ 'background-image': 'url(/image/' + escape(image) + ')' });
-                $background.fadeIn(fadeDelay);
+                if (data[index]) {
+                    var image = '';
+                    if (data[index].art.fanart)
+                        image = data[index].art.fanart;
+                    else if (data[index].art['tvshow.fanart'])
+                        image = data[index].art['tvshow.fanart'];
+                    $background.css({ 'background-image': 'url(/image/' + escape(image) + ')' });
+                    $background.fadeIn(fadeDelay);
+                }
             });
 
             window.setTimeout(function() {

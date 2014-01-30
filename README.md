@@ -19,36 +19,14 @@ Drop the code inside your XBMC addons folder.
 - Browse all tvshows, seasons and episodes in the XBMC library
 - Start movies/episodes from your browser
 
-## Under the hood
-Chorus uses the following open source libraries, creds to all authors:
+## Libraries
+Visualix was developed using following libraries:
 
+- XBMC JSON-RPC library
+- Twitter Bootstrap v3
 - jQuery
-- backbone
-- underscore
-- bootstrap
-- jquery ui
-- backstretch
-- scrollTo
-- total storage
-- Font awesome
-- for all, see lib/enabled
-
-## Developers
-
-
-### Compiling
-Sass and Grunt are used to compile css and js in the dist folder
-
-### Contributing
-If you would like to make this project better I would appreciate any help. Send me your merge requests!
-A few things that are "nice to haves"
-
-- Backbone, this is my first project using backbone and I am sure I could be doing some things better (refactor)
-- Addons, Make it work with your favourite addon - I attempted google music but failed even using it via the ui
-- Mobile/Tablet App, I would love to reuse a lot of the code as an app, but dont know how
-- Video Support, It would be cool to both browse your video library but also play videos via the browser
-- In Browser audio playback, this was a feature of xbmcwui and I miss it a bit
-- Photo library, I wouldn't use it, but you might!
+- KnockoutJS
+- Durandal
 
 ## Screenshots
 

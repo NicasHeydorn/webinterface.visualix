@@ -8,7 +8,16 @@
             genre: [],
             seasons: []
         });
-        this.backToSeason = function () {
+        this.isWatched = function () {
+            var watched = true;
+            for (var i = 0; i < this.tvshow().seasons.length; i++) {
+                var current = this.tvshow().seasons[i];
+                if (current.watchedepisodes < current.episode) {
+                    watched = false;
+                    break;
+                }
+            }
+            return watched;
         };
     };
 
@@ -43,23 +52,6 @@
 
         if (xbmc.cache.tvshows[data.tvshowid]) {
             var tvshow = xbmc.cache.tvshows[data.tvshowid];
-            
-            tvshow.isWatched = (function () {
-                var watched = true;
-                for (var i = 0; i < model.tvshow().seasons.length; i++) {
-                    var current = model.tvshow().seasons[i];
-
-                    if (current.watchedepisodes < current.episode) {
-                        watched = false;
-                        break;
-                    }
-                }
-                return watched;
-            })();
-            
-            model.showSeasonDetails = function (season) {
-                router.navigate('#tvshows/' + data.tvshowid + '/' + season.season);
-            };
 
             model.tvshow(tvshow);
         } else {
@@ -72,22 +64,6 @@
 
                 $.when($.ajax(seasonDetailsRequest)).then(function (seasonDetailsResponse) {
                     tvshowdetails.seasons = seasonDetailsResponse.result.seasons; // Add the season data to the tvshow info.
-
-                    /*
-                     * Add additional functions to the model.
-                     */
-                    tvshowdetails.isWatched = (function() {
-                        var watched = true;
-                        for (var i = 0; i < model.tvshow().seasons.length; i++) {
-                            var current = model.tvshow().seasons[i];
-
-                            if (current.watchedepisodes < current.episode) {
-                                watched = false;
-                                break;
-                            }
-                        }
-                        return watched;
-                    })();
 
                     /*
                      * Bind the received data to the model.

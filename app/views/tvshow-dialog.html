@@ -1,5 +1,5 @@
 ﻿<div class="modal-dialog" data-auto-close="true">
-    <div class="modal-content" data-bind="css: { watched: tvshow().isWatched } ">
+    <div class="modal-content" data-bind="css: { watched: isWatched() } ">
         <div class="modal-body">
             <h1>
                 <span class="rating">
@@ -8,7 +8,7 @@
                 <span data-bind="html: tvshow().title"></span>
                 <small data-bind="html: '(' + tvshow().episode + ' episodes)'"></small>
                 <span class="watched-icon">
-                    <i class="glyphicon" data-bind="css: { 'glyphicon-eye-open': tvshow().isWatched, 'glyphicon-eye-close': !tvshow().isWatched }"></i>
+                    <i class="glyphicon" data-bind="css: { 'glyphicon-eye-open': isWatched(), 'glyphicon-eye-close': !isWatched() }"></i>
                 </span>
             </h1>
             <div class="image">

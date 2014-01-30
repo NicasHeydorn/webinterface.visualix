@@ -53,6 +53,7 @@
                  */
                 model.episode(episodedetails); // Set the details in the model.
                 xbmc.cache.episodes[data.episodeid] = episodedetails; // Save the retrieved data to the cache.
+                console.log(episodedetails);
             });
         }
 

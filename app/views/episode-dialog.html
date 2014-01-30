@@ -1,12 +1,12 @@
 ﻿<div class="modal-dialog" data-auto-close="true">
-    <div class="modal-content">
+    <div class="modal-content" data-bind="css: { watched: episode().playcount > 0 }">
         <div class="modal-body">
             <h1>
                 <a class="back-button btn btn-sm" data-bind="visible: !hidebackbutton, click: backToSeason"><i class="glyphicon glyphicon-arrow-left"></i> <!-- ko text: 'Season ' + episode().season --><!-- /ko --></a>
                 <span data-bind="html: episode().label"></span>
                 <small data-bind="html: '(' + episode().firstaired + ')'"></small>
                 <span class="watched-icon">
-                    <i class="glyphicon" data-bind="css: { 'glyphicon-eye-open': episode().isWatched, 'glyphicon-eye-close': !episode().isWatched }"></i>
+                    <i class="glyphicon" data-bind="css: { 'glyphicon-eye-open': episode().playcount > 0, 'glyphicon-eye-close': episode().playcount <= 0 }"></i>
                 </span>
             </h1>
             <div class="image">

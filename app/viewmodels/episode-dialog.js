@@ -60,7 +60,7 @@
         /*
          * Hide the 'back' button when the episode is loaded from the homepage.
          */
-        model.hidebackbutton = router.activeItem().isdefault;
+        model.hidebackbutton = router.activeItem().pagetype === 'Home';
     };
 
     return EpisodeDialog;

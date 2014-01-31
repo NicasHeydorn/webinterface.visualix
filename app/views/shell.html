@@ -5,11 +5,26 @@
         <div class="search-area">
             <div class="form">
                 <h1>Find a movie or tv show</h1>
-                <div class="input-group">
-                    <input type="text" class="form-control" placeholder="Search Movies & TV Shows">
-                    <span class="input-group-btn">
-                        <button class="btn btn-default" type="button" data-bind="click: searchForMovie"><i class="glyphicon glyphicon-search"></i></button>
-                    </span>
+                <input type="text" class="form-control" placeholder="Search Movies & TV Shows" data-bind="value: searchforterm, valueUpdate: 'afterkeydown'" />
+                <div class="search-results" data-bind="visible: (searchdatamovies().length + searchdatatvshows().length + searchdataepisodes().length) > 0">
+                    <div data-bind="visible: searchdatamovies().length > 0">
+                        <h2>Movies</h2>
+                        <ul data-bind="foreach: searchdatamovies()">
+                            <li data-bind="text: title, click: $parent.opensearchitem"></li>
+                        </ul>
+                    </div>
+                    <div data-bind="visible: searchdatatvshows().length > 0">
+                        <h2>TV Shows</h2>
+                        <ul data-bind="foreach: searchdatatvshows()">
+                            <li data-bind="text: title, click: $parent.opensearchitem"></li>
+                        </ul>
+                    </div>
+                    <div data-bind="visible: searchdataepisodes().length > 0">
+                        <h2>Episodes</h2>
+                        <ul data-bind="foreach: searchdataepisodes()">
+                            <li data-bind="text: title, click: $parent.opensearchitem"></li>
+                        </ul>
+                    </div>
                 </div>
             </div>
         </div>

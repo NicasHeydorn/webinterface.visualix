@@ -90,5 +90,17 @@ define(['durandal/system', 'durandal/app', 'durandal/viewLocator', 'plugins/dial
                 });
             }
         });
+
+        var tvshowsForSearchRequest = xbmc.getRequestOptions(xbmc.options.tvshowsForSearch()); // Get the default request options.
+
+        $.when($.ajax(tvshowsForSearchRequest)).then(function (tvshowsForSearchResult) {
+            for (var i = 0; i < tvshowsForSearchResult.result.tvshows.length; i++) {
+                xbmc.cache.searchdata.push({
+                    type: 'tvshow',
+                    id: tvshowsForSearchResult.result.tvshows[i].tvshowid,
+                    title: tvshowsForSearchResult.result.tvshows[i].title
+                });
+            }
+        });
     });
 });

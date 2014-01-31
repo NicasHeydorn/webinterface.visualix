@@ -327,6 +327,25 @@
                 }
             };
         },
+
+        tvshowsForSearch: function () {
+            return {
+                'context': this,
+                'method': 'VideoLibrary.GetTVShows',
+                'params': {
+                    'limits': {
+                        'start': 0
+                    },
+                    'properties': [
+                        'title'
+                    ],
+                    'sort': {
+                        'method': 'sorttitle',
+                        'ignorearticle': true
+                    }
+                }
+            };
+        },
     };
 
     window.xbmc = xbmc;

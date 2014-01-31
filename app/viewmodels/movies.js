@@ -3,6 +3,7 @@
     var objectToShow = null;
 
     var model = {
+        pagetype: 'Movies',
         movies: ko.observableArray(),
         movieid: ko.observable(null),
 

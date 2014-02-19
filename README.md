@@ -31,19 +31,22 @@ Visualix was developed using following libraries:
 ## Screenshots
 
 ### Movies
-![alt text](https://raw.github.com/Trickass/webinterface.visualix/master/screenshots/movies.png "Episode detail")
+![alt text](https://raw.github.com/Trickass/webinterface.visualix/master/screenshots/movies.png "Movies")
 
 ### Movie details
-![alt text](https://raw.github.com/Trickass/webinterface.visualix/master/screenshots/movie-detail.png "Episode details")
+![alt text](https://raw.github.com/Trickass/webinterface.visualix/master/screenshots/movie-detail.png "Movie details")
+
+### Search results
+![alt text](https://raw.github.com/Trickass/webinterface.visualix/master/screenshots/search-results.png "Search results")
 
 ### TV Shows
-![alt text](https://raw.github.com/Trickass/webinterface.visualix/master/screenshots/tvshows.png "Episode detail")
+![alt text](https://raw.github.com/Trickass/webinterface.visualix/master/screenshots/tvshows.png "TV Shows")
 
 ### TV Show details
-![alt text](https://raw.github.com/Trickass/webinterface.visualix/master/screenshots/tvshow-detail.png "Episode details")
+![alt text](https://raw.github.com/Trickass/webinterface.visualix/master/screenshots/tvshow-detail.png "TV Show details")
 
 ### Season details
-![alt text](https://raw.github.com/Trickass/webinterface.visualix/master/screenshots/season-detail.png "Episode details")
+![alt text](https://raw.github.com/Trickass/webinterface.visualix/master/screenshots/season-detail.png "Season details")
 
 ### Episode details
 ![alt text](https://raw.github.com/Trickass/webinterface.visualix/master/screenshots/episode-detail.png "Episode details")

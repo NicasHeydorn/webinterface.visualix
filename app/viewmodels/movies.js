@@ -62,13 +62,23 @@
     /*
      * Get all movies and add them to the model.
      */
-    var allMoviesRequest = xbmc.getRequestOptions(xbmc.options.allMovies()); // Get the default request options.
+    var moviesPerRequest = 25;
 
-    $.when($.ajax(allMoviesRequest)).then(function (allMoviesResult) {
-        ko.utils.arrayPushAll(model.movies, allMoviesResult.result.movies);
+    var getLimitedMovies = function (start, end) {
+        var allMoviesRequest = xbmc.getRequestOptions(xbmc.options.allMoviesWithLimit(start, end)); // Get the default request options.
 
-        xbmc.cache.allmovies = allMoviesResult.result.movies;
-    });
+        $.when($.ajax(allMoviesRequest)).then(function (allMoviesResult) {
+            ko.utils.arrayPushAll(model.movies, allMoviesResult.result.movies);
 
+            xbmc.cache.allmovies.push(allMoviesResult.result.movies);
+            
+            if (allMoviesResult.result.limits.total > end) {
+                getLimitedMovies(start + moviesPerRequest, end + moviesPerRequest);
+            }
+        });
+    };
+
+    getLimitedMovies(0, moviesPerRequest);
+    
     return model;
 });

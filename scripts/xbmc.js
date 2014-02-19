@@ -39,7 +39,7 @@
     xbmc.cache = {
         recentmovies: {},
         recentepisodes: {},
-        allmovies: {},
+        allmovies: [],
         movies: {},
         tvshows: {},
         seasons: {},
@@ -55,6 +55,33 @@
                 'params': {
                     'limits': {
                         'start': 0
+                    },
+                    'properties': [
+                        'title',
+                        'originaltitle',
+                        'lastplayed',
+                        'runtime',
+                        'playcount',
+                        'rating',
+                        'thumbnail',
+                        'art'
+                    ],
+                    'sort': {
+                        'method': 'sorttitle',
+                        'ignorearticle': true
+                    }
+                }
+            };
+        },
+        
+        allMoviesWithLimit: function(start, end) {
+            return {
+                'context': this,
+                'method': 'VideoLibrary.GetMovies',
+                'params': {
+                    'limits': {
+                        'start': start,
+                        'end': end
                     },
                     'properties': [
                         'title',

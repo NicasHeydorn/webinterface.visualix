@@ -13,7 +13,7 @@ define('xbmc', xbmc);
 
 define(['durandal/system', 'durandal/app', 'durandal/viewLocator', 'plugins/dialog', 'plugins/router', 'xbmc'], function(system, app, viewLocator, dialog, router, xbmc) {
     //>>excludeStart("build", true);
-    system.debug(true);
+    system.debug(false);
     //>>excludeEnd("build");
 
     app.title = 'Visualix';

@@ -204,6 +204,7 @@ h1 {
 .section ul.movie-list-inline li,
 .section ul.tvshow-list-inline li {
   display: inline-block;
+  margin-bottom: 4px;
 }
 .section ul.movie-list-inline li.image-container,
 .section ul.tvshow-list-inline li.image-container {

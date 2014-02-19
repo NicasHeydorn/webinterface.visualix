@@ -1,5 +1,6 @@
 # Visualix
-Fully responsive custom webinterface for XBMC, supporting movie and tvshow control.
+Visualix is a fully responsive web interface for XBMC.
+You can use it to browse your movies and tv shows, perform a quick search in your library and start the movie on XBMC.
 
 ## Author
 Nick Sevens
@@ -11,12 +12,13 @@ Nick Sevens
 - XBMC v12 or 13
 
 ## Installation
-Drop the code inside your XBMC addons folder.
+Download the source code and add it to your XBMC addons folder (on windows: %appdata%\XBMC\Addons) and set the addon to be your default webinterface.
 
 ## Features
 - Browse recently added movies and tv series
 - Browse all movies in the XBMC library
 - Browse all tvshows, seasons and episodes in the XBMC library
+- Perform a quick search on your XBMC library
 - Start movies/episodes from your browser
 
 ## Libraries

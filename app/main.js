@@ -72,9 +72,11 @@ define(['durandal/system', 'durandal/app', 'durandal/viewLocator', 'plugins/dial
                 xbmc.cache.searchdata.push({
                     type: 'movie',
                     id: moviesForSearchResult.result.movies[i].movieid,
-                    title: moviesForSearchResult.result.movies[i].title
+                    title: moviesForSearchResult.result.movies[i].title,
+                    year: moviesForSearchResult.result.movies[i].year
                 });
             }
+            console.log(xbmc.cache.searchdata);
         });
         
         var episodesForSearchRequest = xbmc.getRequestOptions(xbmc.options.episodesForSearch()); // Get the default request options.
@@ -86,7 +88,8 @@ define(['durandal/system', 'durandal/app', 'durandal/viewLocator', 'plugins/dial
                     id: episodesForSearchResult.result.episodes[i].episodeid,
                     tvshowid: episodesForSearchResult.result.episodes[i].tvshowid,
                     season: episodesForSearchResult.result.episodes[i].season,
-                    title: episodesForSearchResult.result.episodes[i].label
+                    title: episodesForSearchResult.result.episodes[i].label,
+                    showtitle: episodesForSearchResult.result.episodes[i].showtitle
                 });
             }
         });

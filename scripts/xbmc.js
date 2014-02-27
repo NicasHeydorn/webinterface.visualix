@@ -324,7 +324,8 @@
                         'start': 0
                     },
                     'properties': [
-                        'title'
+                        'title',
+                        'year'
                     ],
                     'sort': {
                         'method': 'sorttitle',
